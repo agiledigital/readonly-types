@@ -24,7 +24,8 @@
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "type-coverage": "type-coverage --strict --detail --ignore-catch",
     "format": "prettier --write '{src}/**/*.{ts,tsx}'",
-    "test": "jest"
+    "test": "jest",
+    "release": "yarn build && yarn lint && yarn type-coverage && yarn publish"
   },
   "typeCoverage": {
     "atLeast": 100
