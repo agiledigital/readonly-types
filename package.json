@@ -1,6 +1,6 @@
 {
   "name": "readonly-types",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist",
   "author": {
     "name": "Daniel Nixon"
