@@ -6,6 +6,16 @@
 
 A collection of readonly TypeScript types inspired by `ReadonlyArray`.
 
+## Installation
+
+```sh
+# yarn
+yarn add readonly-types
+
+# npm
+npm install readonly-types
+```
+
 ## See Also
 * https://github.com/jonaskello/tslint-immutable
 * https://github.com/krzkaczor/ts-essentials#deep-partial--deep-required--deep-readonly--deep-nonnullable
