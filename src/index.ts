@@ -129,7 +129,7 @@ export type ReadonlyDate = {
   // tslint:enable: no-method-signature
 };
 
-// tslint:disable-next-line: max-union-size
 export const ReadonlyDate = (
+  // tslint:disable-next-line: max-union-size
   value: number | string | Date | ReadonlyDate
 ): ReadonlyDate => new Date(value as number | string | Date);
