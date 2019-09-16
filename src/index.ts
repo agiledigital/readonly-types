@@ -27,6 +27,23 @@ export type ReadonlyURLSearchParams = {
   readonly values: () => IterableIterator<string>;
 };
 
+// tslint:disable: max-union-size readonly-array
+export const ReadonlyURLSearchParams = (
+  init?:
+    | readonly string[][]
+    | string[][]
+    | Record<string, string>
+    | string
+    | URLSearchParams
+    | ReadonlyURLSearchParams
+): ReadonlyURLSearchParams =>
+  new URLSearchParams(init as
+    | string[][]
+    | Record<string, string>
+    | string
+    | URLSearchParams);
+// tslint:enable: max-union-size readonly-array
+
 export type ReadonlyURL = {
   readonly hash: string;
   readonly host: string;
@@ -147,12 +164,15 @@ export interface ReadonlyWeakMap<K extends object, V>
   readonly get: (key: K) => V | undefined;
 }
 
-export const ReadonlySet = <T>(values: Iterable<T>): ReadonlySet<T> => new Set(values);
-export const ReadonlyWeakSet = <T extends object>(values: Iterable<T>): ReadonlyWeakSet<T> =>
-  new WeakSet(values);
+export const ReadonlySet = <T>(values: Iterable<T>): ReadonlySet<T> =>
+  new Set(values);
+export const ReadonlyWeakSet = <T extends object>(
+  values: Iterable<T>
+): ReadonlyWeakSet<T> => new WeakSet(values);
 
-export const ReadonlyMap = <K, V>(values: Iterable<readonly [K, V]>): ReadonlyMap<K, V> =>
-  new Map(values);
+export const ReadonlyMap = <K, V>(
+  values: Iterable<readonly [K, V]>
+): ReadonlyMap<K, V> => new Map(values);
 export const ReadonlyWeakMap = <K extends object, V>(
   // tslint:disable-next-line: readonly-array
   values: Iterable<[K, V]>
