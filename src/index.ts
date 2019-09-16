@@ -139,19 +139,6 @@ export interface ReadonlyWeakKeyedCollection<K> {
   readonly has: (key: K) => boolean;
 }
 
-export interface ReadonlyKeyedCollection<K, V>
-  extends ReadonlyWeakKeyedCollection<K> {
-  /** Calls callbackFn once for each key-value pair present in the collection, in insertion order. If a thisArg parameter is provided to forEach, it will be used as the this value for each callback. */
-  readonly forEach: (
-    callbackfn: (value: K, value2: V, set: this) => void,
-    thisArg?: unknown
-  ) => void;
-  /** Returns the number of (unique) elements in a collection. */
-  // tslint:disable-next-line: no-mixed-interface
-  readonly size: number;
-}
-
-export interface ReadonlySet<T> extends ReadonlyKeyedCollection<T, T> {}
 export interface ReadonlyWeakSet<T> extends ReadonlyWeakKeyedCollection<T> {}
 
 export interface ReadonlyWeakMap<K extends object, V>
@@ -160,26 +147,13 @@ export interface ReadonlyWeakMap<K extends object, V>
   readonly get: (key: K) => V | undefined;
 }
 
-export interface ReadonlyMap<K, V> extends ReadonlyKeyedCollection<K, V> {
-  /** Returns the value associated to the key, or undefined if there is none. */
-  readonly get: (key: K) => V | undefined;
-  /** Returns an iterable of entries in the map. */
-  readonly [Symbol.iterator]: () => IterableIterator<readonly [K, V]>;
-  /** Returns an iterable of key, value pairs for every entry in the map. */
-  readonly entries: () => IterableIterator<readonly [K, V]>;
-  /** Returns an iterable of keys in the map */
-  readonly keys: () => IterableIterator<K>;
-  /** Returns an iterable of values in the map */
-  readonly values: () => IterableIterator<V>;
-}
-
-export const ReadonlySet = <T>(values: Iterable<T>) => new Set(values);
-export const ReadonlyWeakSet = <T extends object>(values: Iterable<T>) =>
+export const ReadonlySet = <T>(values: Iterable<T>): ReadonlySet<T> => new Set(values);
+export const ReadonlyWeakSet = <T extends object>(values: Iterable<T>): ReadonlyWeakSet<T> =>
   new WeakSet(values);
 
-export const ReadonlyMap = <K, V>(values: Iterable<readonly [K, V]>) =>
+export const ReadonlyMap = <K, V>(values: Iterable<readonly [K, V]>): ReadonlyMap<K, V> =>
   new Map(values);
 export const ReadonlyWeakMap = <K extends object, V>(
   // tslint:disable-next-line: readonly-array
   values: Iterable<[K, V]>
-) => new WeakMap(values);
+): ReadonlyWeakMap<K, V> => new WeakMap(values);
