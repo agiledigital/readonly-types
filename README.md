@@ -23,7 +23,11 @@ npm install readonly-types
 // Here's an example using ReadonlyURL.
 import { ReadonlyURL } from "readonly-types";
 
-const hasFooSearchParam = (url: ReadonlyURL) => url.searchParams.has("foo")
+// This is fine.
+const hasFooSearchParam = (url: ReadonlyURL) => url.searchParams.has("foo");
+
+// But this won't compile.
+const setFooSearchParam = (url: ReadonlyURL) => url.searchParams.set("foo", "bar");
 ```
 
 ## The Types
