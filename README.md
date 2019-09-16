@@ -32,6 +32,7 @@ const hasFooSearchParam = (url: ReadonlyURL) => url.searchParams.has("foo")
 * ReadonlyDate (for [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
 * ReadonlyWeakSet (for [WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet))
 * ReadonlyWeakMap (for [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap))
+* PRs welcome!
 
 ## See Also
 * https://github.com/immutable-js/immutable-js
