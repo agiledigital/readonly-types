@@ -35,7 +35,7 @@ export const ReadonlyURLSearchParams = (
     | Record<string, string>
     | string
     | URLSearchParams
-    // | ReadonlyURLSearchParams
+  // | ReadonlyURLSearchParams
 ): ReadonlyURLSearchParams =>
   new URLSearchParams(init as
     | string[][]
@@ -60,8 +60,10 @@ export type ReadonlyURL = {
   readonly toJSON: () => string;
 };
 
-export const ReadonlyURL = (url: string, base?: string | URL | ReadonlyURL): ReadonlyURL =>
-  new URL(url, base as string | URL);
+export const ReadonlyURL = (
+  url: string,
+  base?: string | URL | ReadonlyURL
+): ReadonlyURL => new URL(url, base as string | URL);
 
 export type ReadonlyDate = {
   /** Returns a string representation of a date. The format of the string depends on the locale. */
@@ -156,12 +158,17 @@ export interface ReadonlyWeakKeyedCollection<K> {
   readonly has: (key: K) => boolean;
 }
 
-export interface ReadonlyWeakSet<T> extends ReadonlyWeakKeyedCollection<T> {}
+export interface ReadonlyWeakSet<T> extends ReadonlyWeakKeyedCollection<T> {
+  readonly [Symbol.toStringTag]: string;
+}
 
 export interface ReadonlyWeakMap<K extends object, V>
   extends ReadonlyWeakKeyedCollection<K> {
   /** Returns the value associated to the key, or undefined if there is none. */
   readonly get: (key: K) => V | undefined;
+
+  // tslint:disable-next-line: no-mixed-interface
+  readonly [Symbol.toStringTag]: string;
 }
 
 export const ReadonlySet = <T>(values: Iterable<T>): ReadonlySet<T> =>
