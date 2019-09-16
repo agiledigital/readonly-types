@@ -35,7 +35,7 @@ export const ReadonlyURLSearchParams = (
     | Record<string, string>
     | string
     | URLSearchParams
-    | ReadonlyURLSearchParams
+    // | ReadonlyURLSearchParams
 ): ReadonlyURLSearchParams =>
   new URLSearchParams(init as
     | string[][]
@@ -60,8 +60,8 @@ export type ReadonlyURL = {
   readonly toJSON: () => string;
 };
 
-export const ReadonlyURL = (url: string, base?: string | URL): ReadonlyURL =>
-  new URL(url, base);
+export const ReadonlyURL = (url: string, base?: string | URL | ReadonlyURL): ReadonlyURL =>
+  new URL(url, base as string | URL);
 
 export type ReadonlyDate = {
   /** Returns a string representation of a date. The format of the string depends on the locale. */
