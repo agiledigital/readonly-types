@@ -17,6 +17,22 @@ yarn add readonly-types
 npm install readonly-types
 ```
 
+## Usage
+
+```TypeScript
+// Here's an example using ReadonlyURL.
+import { ReadonlyURL } from "readonly-types";
+
+const hasFooSearchParam = (url: ReadonlyURL) => url.searchParams.has("foo")
+```
+
+## The Types
+* ReadonlyURL (for [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL))
+* ReadonlyURLSearchParams (for [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams))
+* ReadonlyDate (for [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
+* ReadonlyWeakSet (for [WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet))
+* ReadonlyWeakMap (for [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap))
+
 ## See Also
 * https://github.com/immutable-js/immutable-js
 * https://github.com/jonaskello/tslint-immutable
