@@ -134,26 +134,9 @@ export const ReadonlyDate = (
   value: number | string | Date | ReadonlyDate
 ): ReadonlyDate => new Date(value as number | string | Date);
 
-export interface ReadonlyWeakKeyedCollection<K> {
-  /** Returns a boolean indicating whether an element with the specified value exists in the collection  */
-  readonly has: (key: K) => boolean;
-}
+export const ReadonlySet = <T>(values: Iterable<T>): ReadonlySet<T> =>
+  new Set(values);
 
-export interface ReadonlyWeakSet<T> extends ReadonlyWeakKeyedCollection<T> {}
-
-export interface ReadonlyWeakMap<K extends object, V>
-  extends ReadonlyWeakKeyedCollection<K> {
-  /** Returns the value associated to the key, or undefined if there is none. */
-  readonly get: (key: K) => V | undefined;
-}
-
-export const ReadonlySet = <T>(values: Iterable<T>): ReadonlySet<T> => new Set(values);
-export const ReadonlyWeakSet = <T extends object>(values: Iterable<T>): ReadonlyWeakSet<T> =>
-  new WeakSet(values);
-
-export const ReadonlyMap = <K, V>(values: Iterable<readonly [K, V]>): ReadonlyMap<K, V> =>
-  new Map(values);
-export const ReadonlyWeakMap = <K extends object, V>(
-  // tslint:disable-next-line: readonly-array
-  values: Iterable<[K, V]>
-): ReadonlyWeakMap<K, V> => new WeakMap(values);
+export const ReadonlyMap = <K, V>(
+  values: Iterable<readonly [K, V]>
+): ReadonlyMap<K, V> => new Map(values);
