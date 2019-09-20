@@ -27,7 +27,6 @@ export type ReadonlyURLSearchParams = {
   readonly values: () => IterableIterator<string>;
 };
 
-// tslint:disable: max-union-size readonly-array
 export const ReadonlyURLSearchParams = (
   init?:
     | readonly string[][]
@@ -35,14 +34,13 @@ export const ReadonlyURLSearchParams = (
     | Record<string, string>
     | string
     | URLSearchParams
-  // | ReadonlyURLSearchParams
+    | ReadonlyURLSearchParams
 ): ReadonlyURLSearchParams =>
   new URLSearchParams(init as
     | string[][]
     | Record<string, string>
     | string
     | URLSearchParams);
-// tslint:enable: max-union-size readonly-array
 
 export type ReadonlyURL = {
   readonly hash: string;
@@ -122,12 +120,11 @@ export type ReadonlyDate = {
   /** Returns a date as a string value in ISO format. */
   readonly toISOString: () => string;
 
-  // tslint:disable: no-any
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   /** Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. */
   readonly toJSON: (key?: any) => string;
-  // tslint:enable: no-any
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
-  // tslint:disable: no-method-signature
   /**
    * Converts a Date object to a string.
    */
@@ -145,11 +142,9 @@ export type ReadonlyDate = {
    * @returns A number if 'hint' was "number", a string if 'hint' was "string" or "default".
    */
   [Symbol.toPrimitive](hint: string): string | number;
-  // tslint:enable: no-method-signature
 };
 
 export const ReadonlyDate = (
-  // tslint:disable-next-line: max-union-size
   value: number | string | Date | ReadonlyDate
 ): ReadonlyDate => new Date(value as number | string | Date);
 
@@ -167,7 +162,6 @@ export interface ReadonlyWeakMap<K extends object, V>
   /** Returns the value associated to the key, or undefined if there is none. */
   readonly get: (key: K) => V | undefined;
 
-  // tslint:disable-next-line: no-mixed-interface
   readonly [Symbol.toStringTag]: string;
 }
 
@@ -181,6 +175,5 @@ export const ReadonlyMap = <K, V>(
   values: Iterable<readonly [K, V]>
 ): ReadonlyMap<K, V> => new Map(values);
 export const ReadonlyWeakMap = <K extends object, V>(
-  // tslint:disable-next-line: readonly-array
   values: Iterable<[K, V]>
 ): ReadonlyWeakMap<K, V> => new WeakMap(values);
