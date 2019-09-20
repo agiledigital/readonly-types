@@ -119,12 +119,8 @@ export type ReadonlyDate = {
   readonly toUTCString: () => string;
   /** Returns a date as a string value in ISO format. */
   readonly toISOString: () => string;
-
-  /* eslint-disable @typescript-eslint/no-explicit-any */
   /** Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. */
-  readonly toJSON: (key?: any) => string;
-  /* eslint-enable @typescript-eslint/no-explicit-any */
-
+  readonly toJSON: (key?: unknown) => string;
   /**
    * Converts a Date object to a string.
    */
