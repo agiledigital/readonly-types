@@ -38,6 +38,37 @@ const setFooSearchParam = (url: ReadonlyURL) => url.searchParams.set("foo", "bar
 * ReadonlyWeakMap (for [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap))
 * PRs welcome!
 
+## Linting
+
+You can ban the mutable counterparts to these readonly types using [ESLint](https://eslint.org/), [no-restricted-globals](https://eslint.org/docs/rules/no-restricted-globals) and [typescript-eslint/ban-types](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-types.md).
+
+```javascript
+  rules: {
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        types: {
+          URL: {
+            fixWith: "ReadonlyURL",
+          },
+          URLSearchParams: {
+            fixWith: "ReadonlyURLSearchParams",
+          },
+          Date: {
+            fixWith: "ReadonlyDate",
+          },
+        },
+      },
+    ],
+    "no-restricted-globals": [
+      "error",
+      { name: "URL" },
+      { name: "URLSearchParams" },
+      { name: "Date" },
+    ],
+  },
+```
+
 ## See Also
 * https://github.com/immutable-js/immutable-js
 * https://github.com/jonaskello/tslint-immutable
