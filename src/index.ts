@@ -1,3 +1,13 @@
+export type ReadonlyPartial<T> = Readonly<Partial<T>>;
+
+export type ReadonlyRequired<T> = Readonly<Required<T>>;
+
+export type ReadonlyPick<T, K extends keyof T> = Readonly<Pick<T, K>>;
+
+export type ReadonlyRecord<K extends string | number | symbol, T> = Readonly<
+  Record<K, T>
+>;
+
 export type ReadonlyURLSearchParams = {
   /**
    * Returns the first value associated to the given search parameter.
