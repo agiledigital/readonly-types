@@ -31,6 +31,7 @@ const setFooSearchParam = (url: ReadonlyURL) => url.searchParams.set("foo", "bar
 ```
 
 ## The Types
+* ReadonlyRecord (for [Record](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkt))
 * ReadonlyURL (for [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL))
 * ReadonlyURLSearchParams (for [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams))
 * ReadonlyDate (for [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
@@ -48,6 +49,9 @@ You can ban the mutable counterparts to these readonly types using [ESLint](http
       "error",
       {
         types: {
+          Record: {
+            fixWith: "ReadonlyRecord",
+          },
           URL: {
             fixWith: "ReadonlyURL",
           },
