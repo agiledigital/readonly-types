@@ -46,11 +46,9 @@ export const ReadonlyURLSearchParams = (
     | URLSearchParams
     | ReadonlyURLSearchParams
 ): ReadonlyURLSearchParams =>
-  new URLSearchParams(init as
-    | string[][]
-    | Record<string, string>
-    | string
-    | URLSearchParams);
+  new URLSearchParams(
+    init as string[][] | Record<string, string> | string | URLSearchParams
+  );
 
 export type ReadonlyURL = {
   readonly hash: string;
