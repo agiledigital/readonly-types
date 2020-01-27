@@ -20,7 +20,7 @@
     "prettier": "^1.19.1",
     "ts-jest": "^24.3.0",
     "type-coverage": "^2.4.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "scripts": {
     "build": "tsc",
