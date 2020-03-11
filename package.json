@@ -19,7 +19,7 @@
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
-    "type-coverage": "^2.4.0",
+    "type-coverage": "^2.4.1",
     "typescript": "^3.8.2"
   },
   "scripts": {
