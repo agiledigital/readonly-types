@@ -16,7 +16,7 @@
     "eslint-plugin-jest": "^23.6.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-sonarjs": "^0.5.0",
-    "jest": "^25.1.0",
+    "jest": "^25.5.3",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
     "type-coverage": "^2.4.0",
