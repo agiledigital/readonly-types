@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-types */
+
 export type ReadonlyPartial<T> = Readonly<Partial<T>>;
 
 export type ReadonlyRequired<T> = Readonly<Required<T>>;
