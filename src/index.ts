@@ -71,7 +71,13 @@ export type ReadonlyURL = {
 export const ReadonlyURL = (
   url: string,
   base?: string | URL | ReadonlyURL
-): ReadonlyURL => new URL(url, base as string | URL);
+): ReadonlyURL | undefined => {
+  try {
+    return new URL(url, base as string | URL);
+  } catch {
+    return undefined;
+  }
+};
 
 export type ReadonlyDate = {
   /** Returns a string representation of a date. The format of the string depends on the locale. */
