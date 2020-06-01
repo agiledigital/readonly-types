@@ -76,7 +76,6 @@ You can ban the mutable counterparts to these readonly types using [ESLint](http
 ## See Also
 * https://github.com/danielnixon/total-functions
 * https://github.com/immutable-js/immutable-js
-* https://github.com/jonaskello/tslint-immutable
 * https://github.com/jonaskello/eslint-plugin-functional
 * https://github.com/krzkaczor/ts-essentials#deep-partial--deep-required--deep-readonly--deep-nonnullable
 * https://github.com/piotrwitek/utility-types#deepreadonlyt
