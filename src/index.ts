@@ -11,7 +11,7 @@ export type ReadonlyRecord<K extends string | number | symbol, T> = Readonly<
 export type ReadonlyURLSearchParams = Readonly<
   Omit<URLSearchParams, "append" | "delete" | "set" | "sort">
 > & {
-  // TODO why doesn't is this included in the above type?
+  // TODO why isn't this included in the above type?
   [Symbol.iterator](): IterableIterator<readonly [string, string]>;
 };
 
@@ -67,6 +67,13 @@ export type ReadonlyDate = Readonly<
 export const ReadonlyDate = (
   value: number | string | Date | ReadonlyDate
 ): ReadonlyDate => new Date(value as number | string | Date);
+
+export const ValidReadonlyDate = (
+  value: number | string | Date | ReadonlyDate
+): ReadonlyDate | undefined => {
+  const d = new Date(value as number | string | Date);
+  return isNaN(d.getMilliseconds()) ? undefined : d;
+};
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ReadonlyWeakSet<T extends object> = Readonly<

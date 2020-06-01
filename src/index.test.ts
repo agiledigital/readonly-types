@@ -1,4 +1,10 @@
-import { ReadonlyURL, ReadonlyDate, ReadonlyMap, ReadonlyWeakMap } from ".";
+import {
+  ReadonlyURL,
+  ReadonlyDate,
+  ReadonlyMap,
+  ReadonlyWeakMap,
+  ValidReadonlyDate,
+} from ".";
 
 // tslint:disable: no-expression-statement no-if-statement
 
@@ -37,6 +43,18 @@ describe("ReadonlyDate", () => {
   it("doesn't throw on invalid input", () => {
     const date = ReadonlyDate("asdf");
     expect(date.getMilliseconds()).toBeNaN();
+  });
+});
+
+describe("ValidReadonlyDate", () => {
+  it("returns undefined on invalid input", () => {
+    const date = ValidReadonlyDate("asdf");
+    expect(date).toBeUndefined();
+  });
+
+  it("returns a date for valid input", () => {
+    const date = ValidReadonlyDate(Date.now());
+    expect(date).toBeDefined();
   });
 });
 
