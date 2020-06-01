@@ -24,5 +24,13 @@ module.exports = {
     browser: true
   },
   plugins: ["jest", "sonarjs", "functional", "@typescript-eslint", "prettier", "total-functions"],
-  rules: {}
+  rules: {
+    // Additional rules that are not part of `eslint:recommended`.
+    // See https://eslint.org/docs/rules/
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-await-in-loop": "error",
+    "no-new-wrappers": "error",
+    "eqeqeq": "error",
+  }
 };
