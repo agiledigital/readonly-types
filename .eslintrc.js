@@ -8,17 +8,21 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:sonarjs/recommended",
-    // "plugin:functional/recommended", TODO
+    "plugin:functional/recommended",
+    "plugin:functional/external-recommended",
     "plugin:jest/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:total-functions/recommended",
   ],
   env: {
     "jest/globals": true,
     es6: true,
     browser: true
   },
-  plugins: ["jest", "sonarjs", "functional", "@typescript-eslint", "prettier"],
+  plugins: ["jest", "sonarjs", "functional", "@typescript-eslint", "prettier", "total-functions"],
   rules: {}
 };

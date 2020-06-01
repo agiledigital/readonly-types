@@ -17,7 +17,8 @@ export type ReadonlyURLSearchParams = Readonly<
 
 export const ReadonlyURLSearchParams = (
   init?:
-    | readonly string[][]
+    | readonly (readonly string[])[]
+    // eslint-disable-next-line functional/prefer-readonly-type
     | string[][]
     | Record<string, string>
     | string
@@ -25,17 +26,19 @@ export const ReadonlyURLSearchParams = (
     | ReadonlyURLSearchParams
 ): ReadonlyURLSearchParams =>
   new URLSearchParams(
+    // eslint-disable-next-line functional/prefer-readonly-type
     init as string[][] | Record<string, string> | string | URLSearchParams
   );
 
 export type ReadonlyURL = Readonly<Omit<URL, "searchParams">> & {
-  searchParams: ReadonlyURLSearchParams;
+  readonly searchParams: ReadonlyURLSearchParams;
 };
 
 export const ReadonlyURL = (
   url: string,
   base?: string | URL | ReadonlyURL
 ): ReadonlyURL | undefined => {
+  // eslint-disable-next-line functional/no-try-statement
   try {
     return new URL(url, base as string | URL);
   } catch {
@@ -99,5 +102,6 @@ export const ReadonlyMap = <K, V>(
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const ReadonlyWeakMap = <K extends object, V>(
-  values: Iterable<[K, V]>
-): ReadonlyWeakMap<K, V> => new WeakMap(values);
+  values: Iterable<readonly [K, V]>
+  // eslint-disable-next-line functional/prefer-readonly-type
+): ReadonlyWeakMap<K, V> => new WeakMap(values as Iterable<[K, V]>);

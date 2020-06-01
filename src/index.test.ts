@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable functional/no-conditional-statement */
+/* eslint-disable functional/no-loop-statement */
+/* eslint-disable functional/functional-parameters */
+/* eslint-disable functional/no-expression-statement */
+
 import {
   ReadonlyURL,
   ReadonlyDate,
@@ -5,8 +11,6 @@ import {
   ReadonlyWeakMap,
   ValidReadonlyDate,
 } from ".";
-
-// tslint:disable: no-expression-statement no-if-statement
 
 describe("ReadonlyURL", () => {
   it("iterates through URL search params using for..of", () => {
