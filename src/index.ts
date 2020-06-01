@@ -22,7 +22,7 @@ export type ReadonlyURLSearchParams = Readonly<
   OmitStrict<URLSearchParams, "append" | "delete" | "set" | "sort">
 > & {
   // TODO why isn't this included in the above type?
-  [Symbol.iterator](): IterableIterator<readonly [string, string]>;
+  readonly [Symbol.iterator]: () => IterableIterator<readonly [string, string]>;
 };
 
 export const ReadonlyURLSearchParams = (
