@@ -8,8 +8,18 @@ export type ReadonlyRecord<K extends string | number | symbol, T> = Readonly<
   Record<K, T>
 >;
 
+/**
+ * Drop keys `K` from `T`, where `K` must exist in `T`.
+ *
+ * @see https://github.com/pelotom/type-zoo
+ * @see https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-377567046
+ */
+export type OmitStrict<T, K extends keyof T> = T extends any
+  ? Pick<T, Exclude<keyof T, K>>
+  : never;
+
 export type ReadonlyURLSearchParams = Readonly<
-  Omit<URLSearchParams, "append" | "delete" | "set" | "sort">
+  OmitStrict<URLSearchParams, "append" | "delete" | "set" | "sort">
 > & {
   // TODO why isn't this included in the above type?
   [Symbol.iterator](): IterableIterator<readonly [string, string]>;
@@ -30,7 +40,7 @@ export const ReadonlyURLSearchParams = (
     init as string[][] | Record<string, string> | string | URLSearchParams
   );
 
-export type ReadonlyURL = Readonly<Omit<URL, "searchParams">> & {
+export type ReadonlyURL = Readonly<OmitStrict<URL, "searchParams">> & {
   readonly searchParams: ReadonlyURLSearchParams;
 };
 
@@ -47,7 +57,7 @@ export const ReadonlyURL = (
 };
 
 export type ReadonlyDate = Readonly<
-  Omit<
+  OmitStrict<
     Date,
     | "setTime"
     | "setMilliseconds"
@@ -80,12 +90,12 @@ export const ValidReadonlyDate = (
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ReadonlyWeakSet<T extends object> = Readonly<
-  Omit<WeakSet<T>, "add" | "delete">
+  OmitStrict<WeakSet<T>, "add" | "delete">
 >;
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ReadonlyWeakMap<K extends object, V> = Readonly<
-  Omit<WeakMap<K, V>, "delete" | "set">
+  OmitStrict<WeakMap<K, V>, "delete" | "set">
 >;
 
 export const ReadonlySet = <T>(values: Iterable<T>): ReadonlySet<T> =>
