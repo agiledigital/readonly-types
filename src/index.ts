@@ -36,7 +36,7 @@ export const ReadonlyURLSearchParams = (
     | ReadonlyURLSearchParams
 ): ReadonlyURLSearchParams =>
   new URLSearchParams(
-    // eslint-disable-next-line functional/prefer-readonly-type
+    // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion
     init as string[][] | Record<string, string> | string | URLSearchParams
   );
 
@@ -50,6 +50,7 @@ export const ReadonlyURL = (
 ): ReadonlyURL | undefined => {
   // eslint-disable-next-line functional/no-try-statement
   try {
+    // eslint-disable-next-line total-functions/no-unsafe-type-assertion
     return new URL(url, base as string | URL);
   } catch {
     return undefined;
@@ -79,11 +80,13 @@ export type ReadonlyDate = Readonly<
 
 export const ReadonlyDate = (
   value: number | string | Date | ReadonlyDate
+  // eslint-disable-next-line total-functions/no-unsafe-type-assertion
 ): ReadonlyDate => new Date(value as number | string | Date);
 
 export const ValidReadonlyDate = (
   value: number | string | Date | ReadonlyDate
 ): ReadonlyDate | undefined => {
+  // eslint-disable-next-line total-functions/no-unsafe-type-assertion
   const d = new Date(value as number | string | Date);
   return isNaN(d.getMilliseconds()) ? undefined : d;
 };
@@ -113,5 +116,5 @@ export const ReadonlyMap = <K, V>(
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const ReadonlyWeakMap = <K extends object, V>(
   values: Iterable<readonly [K, V]>
-  // eslint-disable-next-line functional/prefer-readonly-type
+  // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion
 ): ReadonlyWeakMap<K, V> => new WeakMap(values as Iterable<[K, V]>);
