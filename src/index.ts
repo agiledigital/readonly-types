@@ -25,7 +25,7 @@ export type ReadonlyURLSearchParams = Readonly<
   readonly [Symbol.iterator]: () => IterableIterator<readonly [string, string]>;
 };
 
-export const ReadonlyURLSearchParams = (
+export const readonlyURLSearchParams = (
   init?:
     | readonly (readonly string[])[]
     // eslint-disable-next-line functional/prefer-readonly-type
@@ -44,7 +44,7 @@ export type ReadonlyURL = Readonly<OmitStrict<URL, "searchParams">> & {
   readonly searchParams: ReadonlyURLSearchParams;
 };
 
-export const ReadonlyURL = (
+export const readonlyURL = (
   url: string,
   base?: string | URL | ReadonlyURL
 ): ReadonlyURL | undefined => {
@@ -78,12 +78,12 @@ export type ReadonlyDate = Readonly<
   >
 >;
 
-export const ReadonlyDate = (
+export const readonlyDate = (
   value: number | string | Date | ReadonlyDate
   // eslint-disable-next-line total-functions/no-unsafe-type-assertion
 ): ReadonlyDate => new Date(value as number | string | Date);
 
-export const ValidReadonlyDate = (
+export const validReadonlyDate = (
   value: number | string | Date | ReadonlyDate
 ): ReadonlyDate | undefined => {
   // eslint-disable-next-line total-functions/no-unsafe-type-assertion
@@ -101,20 +101,20 @@ export type ReadonlyWeakMap<K extends object, V> = Readonly<
   OmitStrict<WeakMap<K, V>, "delete" | "set">
 >;
 
-export const ReadonlySet = <T>(values: Iterable<T>): ReadonlySet<T> =>
+export const readonlySet = <T>(values: Iterable<T>): ReadonlySet<T> =>
   new Set(values);
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export const ReadonlyWeakSet = <T extends object>(
+export const readonlyWeakSet = <T extends object>(
   values: Iterable<T>
 ): ReadonlyWeakSet<T> => new WeakSet(values);
 
-export const ReadonlyMap = <K, V>(
+export const readonlyMap = <K, V>(
   values: Iterable<readonly [K, V]>
 ): ReadonlyMap<K, V> => new Map(values);
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export const ReadonlyWeakMap = <K extends object, V>(
+export const readonlyWeakMap = <K extends object, V>(
   values: Iterable<readonly [K, V]>
   // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion
 ): ReadonlyWeakMap<K, V> => new WeakMap(values as Iterable<[K, V]>);

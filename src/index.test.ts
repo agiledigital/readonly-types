@@ -5,16 +5,16 @@
 /* eslint-disable functional/no-expression-statement */
 
 import {
-  ReadonlyURL,
-  ReadonlyDate,
-  ReadonlyMap,
-  ReadonlyWeakMap,
-  ValidReadonlyDate,
+  readonlyURL,
+  readonlyDate,
+  readonlyMap,
+  readonlyWeakMap,
+  validReadonlyDate,
 } from ".";
 
 describe("ReadonlyURL", () => {
   it("iterates through URL search params using for..of", () => {
-    const url = ReadonlyURL("http://example.com?foo=a&bar=b");
+    const url = readonlyURL("http://example.com?foo=a&bar=b");
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     for (const p of url!.searchParams) {
@@ -29,12 +29,12 @@ describe("ReadonlyURL", () => {
   });
 
   it("doesn't throw on invalid input", () => {
-    const url = ReadonlyURL("asdf");
+    const url = readonlyURL("asdf");
     expect(url).toBeUndefined();
   });
 
   it("doesn't allow mutation via search params", () => {
-    const url = ReadonlyURL("http://example.com");
+    const url = readonlyURL("http://example.com");
     expect(url).toBeDefined();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -45,26 +45,26 @@ describe("ReadonlyURL", () => {
 
 describe("ReadonlyDate", () => {
   it("doesn't throw on invalid input", () => {
-    const date = ReadonlyDate("asdf");
+    const date = readonlyDate("asdf");
     expect(date.getMilliseconds()).toBeNaN();
   });
 });
 
 describe("ValidReadonlyDate", () => {
   it("returns undefined on invalid input", () => {
-    const date = ValidReadonlyDate("asdf");
+    const date = validReadonlyDate("asdf");
     expect(date).toBeUndefined();
   });
 
   it("returns a date for valid input", () => {
-    const date = ValidReadonlyDate(Date.now());
+    const date = validReadonlyDate(Date.now());
     expect(date).toBeDefined();
   });
 });
 
 describe("ReadonlyMap", () => {
   it("allows iteration using for..of", () => {
-    const map = ReadonlyMap([
+    const map = readonlyMap([
       [1, "one"],
       [2, "two"],
       [3, "three"],
@@ -79,7 +79,7 @@ describe("ReadonlyMap", () => {
 
 describe("ReadonlyWeakMap", () => {
   it("doesn't throw", () => {
-    ReadonlyWeakMap([
+    readonlyWeakMap([
       [{}, "one"],
       [{}, "two"],
       [{}, "three"],
