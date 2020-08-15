@@ -32,6 +32,6 @@
     "release": "yarn build && yarn lint && yarn type-coverage && yarn publish"
   },
   "typeCoverage": {
-    "atLeast": 98.08
+    "atLeast": 98.02
   }
 }
