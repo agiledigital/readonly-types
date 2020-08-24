@@ -32,5 +32,23 @@ module.exports = {
     "no-await-in-loop": "error",
     "no-new-wrappers": "error",
     "eqeqeq": "error",
+    "no-caller": "error",
+    "require-unicode-regexp": "error",
+    "no-loss-of-precision": "error",
+    // Make typescript-eslint rules more aggressive.
+    "@typescript-eslint/consistent-type-assertions": ["error", {
+      "assertionStyle": "never"
+    }],
+    "@typescript-eslint/strict-boolean-expressions": ["error", {
+      "allowString": false,
+      "allowNumber": false,
+      "allowNullableObject": false
+    }],
+    // Interfaces encourage OO, types encourage FP.
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    // Require unknown type annotation in catch blocks.
+    "@typescript-eslint/no-implicit-any-catch": "error",
+    // Don't need this given consistent-type-assertions bans type assertions entirely.
+    "total-functions/no-unsafe-type-assertion": 0
   }
 };

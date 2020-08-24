@@ -36,7 +36,7 @@ export const readonlyURLSearchParams = (
     | ReadonlyURLSearchParams
 ): ReadonlyURLSearchParams =>
   new URLSearchParams(
-    // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion
+    // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
     init as string[][] | Record<string, string> | string | URLSearchParams
   );
 
@@ -50,7 +50,7 @@ export const readonlyURL = (
 ): ReadonlyURL | undefined => {
   // eslint-disable-next-line functional/no-try-statement
   try {
-    // eslint-disable-next-line total-functions/no-unsafe-type-assertion
+    // eslint-disable-next-line total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
     return new URL(url, base as string | URL);
   } catch {
     return undefined;
@@ -80,13 +80,13 @@ export type ReadonlyDate = Readonly<
 
 export const readonlyDate = (
   value: number | string | Date | ReadonlyDate
-  // eslint-disable-next-line total-functions/no-unsafe-type-assertion
+  // eslint-disable-next-line total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
 ): ReadonlyDate => new Date(value as number | string | Date);
 
 export const validReadonlyDate = (
   value: number | string | Date | ReadonlyDate
 ): ReadonlyDate | undefined => {
-  // eslint-disable-next-line total-functions/no-unsafe-type-assertion
+  // eslint-disable-next-line total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
   const d = new Date(value as number | string | Date);
   return isNaN(d.getMilliseconds()) ? undefined : d;
 };
@@ -116,5 +116,5 @@ export const readonlyMap = <K, V>(
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const readonlyWeakMap = <K extends object, V>(
   values: Iterable<readonly [K, V]>
-  // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion
+  // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
 ): ReadonlyWeakMap<K, V> => new WeakMap(values as Iterable<[K, V]>);
