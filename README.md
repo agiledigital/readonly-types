@@ -77,6 +77,7 @@ You can ban the mutable counterparts to these readonly types using [ESLint](http
 ```
 
 ## See Also
+* https://github.com/danielnixon/eslint-config-typed-fp
 * https://github.com/danielnixon/total-functions
 * https://github.com/immutable-js/immutable-js
 * https://github.com/jonaskello/eslint-plugin-functional
