@@ -76,6 +76,8 @@ You can ban the mutable counterparts to these readonly types using [ESLint](http
   },
 ```
 
+These lint rules are configured by [eslint-config-typed-fp](https://github.com/danielnixon/eslint-config-typed-fp) for you.
+
 ## See Also
 * https://github.com/danielnixon/eslint-config-typed-fp
 * https://github.com/danielnixon/total-functions
