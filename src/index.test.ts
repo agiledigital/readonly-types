@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-conditional-expect */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable functional/no-conditional-statement */
 /* eslint-disable functional/no-loop-statement */
@@ -57,6 +58,7 @@ describe("ValidReadonlyDate", () => {
   });
 
   it("returns a date for valid input", () => {
+    // eslint-disable-next-line no-restricted-globals
     const date = validReadonlyDate(Date.now());
     expect(date).toBeDefined();
   });
