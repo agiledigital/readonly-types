@@ -22,7 +22,7 @@
     "prettier": "^2.1.2",
     "ts-jest": "^26.4.1",
     "type-coverage": "^2.13.0",
-    "typescript": "^4.1.0-beta"
+    "typescript": "^4.1.0-dev.20201003"
   },
   "scripts": {
     "build": "tsc",
