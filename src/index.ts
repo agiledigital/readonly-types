@@ -54,9 +54,9 @@ export const readonlyURL = (
   try {
     // eslint-disable-next-line total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
     return new URL(url, base as string | URL);
-  } catch {
-    return undefined;
-  }
+    // eslint-disable-next-line no-empty
+  } catch {}
+  return undefined;
 };
 
 export type ReadonlyDate = Readonly<
