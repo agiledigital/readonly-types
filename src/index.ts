@@ -122,4 +122,4 @@ export const readonlyMap = <K, V>(
 export const readonlyWeakMap = <K extends object, V>(
   values: Iterable<readonly [K, V]>
   // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
-): ReadonlyWeakMap<K, V> => new WeakMap(values as Iterable<[K, V]>);
+): ReadonlyWeakMap<K, V> => new WeakMap(values);

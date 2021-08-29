@@ -22,8 +22,13 @@ describe("ReadonlyURL", () => {
   it("iterates through URL search params using for..of", () => {
     const url = readonlyURL("http://example.com?foo=a&bar=b");
 
+    if (url === undefined) {
+      // eslint-disable-next-line functional/no-throw-statement
+      throw new Error("url was undefined");
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    for (const p of url!.searchParams) {
+    for (const p of url.searchParams) {
       const [k, v] = p;
       if (k === "foo") {
         expect(v).toEqual("a");
@@ -43,9 +48,14 @@ describe("ReadonlyURL", () => {
     const url = readonlyURL("http://example.com");
     expect(url).toBeDefined();
 
+    if (url === undefined) {
+      // eslint-disable-next-line functional/no-throw-statement
+      throw new Error("url was undefined");
+    }
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    url!.searchParams.append("", "");
+    url.searchParams.append("", "");
   });
 });
 
