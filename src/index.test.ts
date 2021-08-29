@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable jest/no-conditional-expect */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable functional/no-conditional-statement */
