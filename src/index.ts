@@ -93,6 +93,8 @@ export const validReadonlyDate = (
   return isNaN(d.getMilliseconds()) ? undefined : d;
 };
 
+export const readonlyNow: () => number = () => Date.now()
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ReadonlyWeakSet<T extends object> = Readonly<
   OmitStrict<WeakSet<T>, "add" | "delete">

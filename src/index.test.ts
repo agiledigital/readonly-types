@@ -8,6 +8,7 @@
 import {
   readonlyURL,
   readonlyDate,
+  readonlyNow,
   readonlyMap,
   readonlyWeakMap,
   validReadonlyDate,
@@ -48,6 +49,11 @@ describe("ReadonlyDate", () => {
   it("doesn't throw on invalid input", () => {
     const date = readonlyDate("asdf");
     expect(date.getMilliseconds()).toBeNaN();
+  });
+
+  it("doesn't throw when getting current date (now)", () => {
+    const date = readonlyDate(readonlyNow());
+    expect(date.getMilliseconds()).toBeGreaterThan(0);
   });
 });
 
