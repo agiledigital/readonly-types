@@ -3,5 +3,6 @@ module.exports = {
   reporters: ["clear-text", "progress", "dashboard"],
   testRunner: "jest",
   coverageAnalysis: "perTest",
-  tsconfigFile: "tsconfig.json"
+  tsconfigFile: "tsconfig.json",
+  thresholds: { high: 100, low: 100, break: 100 }
 };
