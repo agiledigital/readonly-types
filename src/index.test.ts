@@ -12,6 +12,9 @@ import {
   readonlyMap,
   readonlyWeakMap,
   validReadonlyDate,
+  readonlyURLSearchParams,
+  readonlySet,
+  readonlyWeakSet,
 } from ".";
 
 describe("ReadonlyURL", () => {
@@ -42,6 +45,13 @@ describe("ReadonlyURL", () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     url!.searchParams.append("", "");
+  });
+});
+
+describe("ReadonlyURLSearchParams", () => {
+  it("doesn't throw", () => {
+    const x = readonlyURLSearchParams("");
+    expect(x).toBeDefined();
   });
 });
 
@@ -87,10 +97,39 @@ describe("ReadonlyMap", () => {
 
 describe("ReadonlyWeakMap", () => {
   it("doesn't throw", () => {
-    readonlyWeakMap([
+    const map = readonlyWeakMap([
       [{}, "one"],
       [{}, "two"],
       [{}, "three"],
     ]);
+
+    expect(map).toBeDefined();
+  });
+});
+
+describe("ReadonlySet", () => {
+  it("allows iteration using for..of", () => {
+    const map = readonlySet([
+      [1, "one"],
+      [2, "two"],
+      [3, "three"],
+    ]);
+
+    for (const [k, v] of map) {
+      expect(k).toBeTruthy();
+      expect(v).toBeTruthy();
+    }
+  });
+});
+
+describe("ReadonlyWeakSet", () => {
+  it("doesn't throw", () => {
+    const map = readonlyWeakSet([
+      [{}, "one"],
+      [{}, "two"],
+      [{}, "three"],
+    ]);
+
+    expect(map).toBeDefined();
   });
 });
