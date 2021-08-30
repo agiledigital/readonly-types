@@ -82,7 +82,6 @@ These lint rules are configured by [eslint-config-typed-fp](https://github.com/d
 
 ## See Also
 * https://github.com/danielnixon/eslint-config-typed-fp
-* https://github.com/danielnixon/total-functions
 * https://github.com/immutable-js/immutable-js
 * https://github.com/jonaskello/eslint-plugin-functional
 * https://github.com/krzkaczor/ts-essentials#deep-partial--deep-required--deep-readonly--deep-nonnullable
