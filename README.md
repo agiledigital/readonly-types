@@ -7,9 +7,6 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/danielnixon/readonly-types/badge.svg?targetFile=package.json)](https://snyk.io/test/github/danielnixon/readonly-types?targetFile=package.json)
 [![npm](https://img.shields.io/npm/v/readonly-types.svg)](https://www.npmjs.com/package/readonly-types)
 
-[![dependencies Status](https://david-dm.org/danielnixon/readonly-types/status.svg)](https://david-dm.org/danielnixon/readonly-types)
-[![devDependencies Status](https://david-dm.org/danielnixon/readonly-types/dev-status.svg)](https://david-dm.org/danielnixon/readonly-types?type=dev)
-
 A collection of readonly TypeScript types inspired by the built-in `ReadonlyArray`, `ReadonlyMap`, etc.
 
 ## Installation
