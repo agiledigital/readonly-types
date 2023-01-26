@@ -6,16 +6,25 @@ module.exports = {
     sourceType: "module"
   },
   extends: [
-    "typed-fp",
-    "plugin:sonarjs/recommended",
-    "plugin:jest/recommended",
-    "plugin:prettier/recommended"
+    "agile-digital",
   ],
   env: {
     "jest/globals": true,
     es6: true,
     browser: true
   },
-  plugins: ["jest", "sonarjs", "functional", "@typescript-eslint", "prettier", "total-functions"],
-  rules: {}
+  plugins: ["jest", "sonarjs", "functional", "@typescript-eslint", "prettier", "total-functions", "spellcheck", "react", "react-hooks", "jsx-a11y"],
+  rules: {
+    "spellcheck/spell-checker": [
+      1,
+      {
+        skipWords: [
+          "globals",
+          "readonly",
+          "Readonly",
+          "sonarjs",
+        ],
+      },
+    ],
+  },
 };
