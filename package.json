@@ -11,6 +11,7 @@
     "@stryker-mutator/jest-runner": "6.3.1",
     "@stryker-mutator/typescript-checker": "6.3.1",
     "@types/jest": "^29.4.0",
+    "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "codecov": "^3.8.3",
