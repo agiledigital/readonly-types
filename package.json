@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "A collection of readonly TypeScript types inspired by the built-in ReadonlyArray, ReadonlyMap, etc.",
   "main": "dist",
-  "repository": "https://github.com/danielnixon/readonly-types.git",
+  "repository": "https://github.com/agiledigital/readonly-types.git",
   "author": "Daniel Nixon <dan.nixon@gmail.com>",
   "license": "MIT",
   "devDependencies": {
