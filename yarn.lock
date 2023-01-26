@@ -2588,7 +2588,7 @@ escape-string-regexp@^5.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-5.0.0.tgz#4683126b500b61762f2dbebace1806e8be31b1c8"
   integrity sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==
 
-eslint-config-agile-digital@^1.6.0:
+eslint-config-agile-digital@^1.4.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/eslint-config-agile-digital/-/eslint-config-agile-digital-1.6.0.tgz#723c29f14bb2ad02dbf9338f270ffbc3402e6d7e"
   integrity sha512-nBKa1ZbsafJvCELQCzPB3TPWOtMIQslsZFc5A2SBzCHSjFGA8N1yuLYO4QNt9r4aNickZl01ssoTK+L5MqlaIg==
