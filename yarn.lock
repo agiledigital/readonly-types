@@ -1722,7 +1722,7 @@
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
-"@typescript-eslint/utils@5.49.0", "@typescript-eslint/utils@^5.10.2":
+"@typescript-eslint/utils@5.49.0", "@typescript-eslint/utils@^5.49.0":
   version "5.49.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.49.0.tgz#1c07923bc55ff7834dfcde487fff8d8624a87b32"
   integrity sha512-cPJue/4Si25FViIb74sHCLtM4nTSBXtLx1d3/QT6mirQ/c65bV8arBEebBJJizfq8W2YyMoPI/WWPFWitmNqnQ==
@@ -2381,7 +2381,7 @@ deep-is@^0.1.3:
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.4.tgz#a6f2dce612fadd2ef1f519b73551f17e85199831"
   integrity sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==
 
-deepmerge-ts@^4.0.3:
+deepmerge-ts@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/deepmerge-ts/-/deepmerge-ts-4.2.2.tgz#582bf34a37592dc8274b137617b539f871aaf11a"
   integrity sha512-Ka3Kb21tiWjvQvS9U+1Dx+aqFAHsdTnMdYptLTmC2VAmDFMugWMY1e15aTODstipmCun8iNuqeSfcx6rsUUk0Q==
@@ -2624,15 +2624,16 @@ eslint-module-utils@^2.7.4:
   dependencies:
     debug "^3.2.7"
 
-eslint-plugin-functional@^4.4.1:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-functional/-/eslint-plugin-functional-4.4.1.tgz#de967e2a307387281ff78466ab66967f17ff9e99"
-  integrity sha512-YhSfHS52Si62Sn126g9wGx+XnWMoWhwEt6ctVXfcJj+xMUiggjOqUVMca7fuLNzX8jYiNBIeU1Y0teHGePZ3NA==
+eslint-plugin-functional@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-functional/-/eslint-plugin-functional-5.0.0.tgz#7caf899105a946bd45d0afe79c95de0df2290ea4"
+  integrity sha512-m+eOc59wv48azpnrQ1w/2QgxkudfQX15Hn3/5OvFVufDIc93Ar3C81pppL4TfTaqcJVD2KTYiOHHuwphp1Z66Q==
   dependencies:
-    "@typescript-eslint/utils" "^5.10.2"
-    deepmerge-ts "^4.0.3"
+    "@typescript-eslint/utils" "^5.49.0"
+    deepmerge-ts "^4.2.2"
     escape-string-regexp "^4.0.0"
-    semver "^7.3.7"
+    is-immutable-type "^1.2.3"
+    semver "^7.3.8"
 
 eslint-plugin-import@^2.27.5:
   version "2.27.5"
@@ -3516,6 +3517,11 @@ is-glob@^4.0.0, is-glob@^4.0.1, is-glob@^4.0.3:
   integrity sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==
   dependencies:
     is-extglob "^2.1.1"
+
+is-immutable-type@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/is-immutable-type/-/is-immutable-type-1.2.3.tgz#1613e5a335362d5bd73fe7fd0b7ee32450534dfb"
+  integrity sha512-DhrZmo/MFG8C2DTsh8YFTLxchMkkiD/fg4dLtxd+OEdqHHjH9u7aXGxDfBCvxxpP/KBkz+vbqzfTJ+v7BcQF0w==
 
 is-interactive@^2.0.0:
   version "2.0.0"
@@ -4950,6 +4956,13 @@ semver@^7.3.7, semver@~7.3.7:
   version "7.3.7"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.7.tgz#12c5b649afdbf9049707796e22a4028814ce523f"
   integrity sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==
+  dependencies:
+    lru-cache "^6.0.0"
+
+semver@^7.3.8:
+  version "7.3.8"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.8.tgz#07a78feafb3f7b32347d725e33de7e2a2df67798"
+  integrity sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==
   dependencies:
     lru-cache "^6.0.0"
 
