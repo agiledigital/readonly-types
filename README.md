@@ -37,6 +37,7 @@ const setFooSearchParam = (url: ReadonlyURL) => url.searchParams.set("foo", "bar
 * ReadonlyURL (for [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL))
 * ReadonlyURLSearchParams (for [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams))
 * ReadonlyDate (for [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
+* ImmutableSet and ImmutableMap (which are truly immutable versions of the [surprisingly mutable built-in ReadonlySet and ReadonlyMap types](https://github.com/agiledigital/readonly-types/blob/master/src/index.ts#L14-L56))
 * ReadonlyWeakSet (for [WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet))
 * ReadonlyWeakMap (for [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap))
 * PRs welcome!
