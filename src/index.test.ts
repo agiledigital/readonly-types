@@ -2,10 +2,10 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable jest/no-conditional-expect */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable functional/no-conditional-statement */
-/* eslint-disable functional/no-loop-statement */
+/* eslint-disable functional/no-conditional-statements */
+/* eslint-disable functional/no-loop-statements */
 /* eslint-disable functional/functional-parameters */
-/* eslint-disable functional/no-expression-statement */
+/* eslint-disable functional/no-expression-statements */
 
 import {
   readonlyURL,
@@ -24,12 +24,13 @@ describe("ReadonlyURL", () => {
     const url = readonlyURL("http://example.com?foo=a&bar=b");
 
     if (url === undefined) {
-      // eslint-disable-next-line functional/no-throw-statement
+      // eslint-disable-next-line functional/no-throw-statements
       throw new Error("url was undefined");
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // eslint-disable-next-line functional/prefer-immutable-types
     for (const p of url.searchParams) {
+      // eslint-disable-next-line functional/prefer-immutable-types
       const [k, v] = p;
       if (k === "foo") {
         expect(v).toEqual("a");
@@ -50,7 +51,7 @@ describe("ReadonlyURL", () => {
     expect(url).toBeDefined();
 
     if (url === undefined) {
-      // eslint-disable-next-line functional/no-throw-statement
+      // eslint-disable-next-line functional/no-throw-statements
       throw new Error("url was undefined");
     }
 
@@ -100,6 +101,7 @@ describe("ReadonlyMap", () => {
       [3, "three"],
     ]);
 
+    // eslint-disable-next-line functional/prefer-immutable-types
     for (const [k, v] of map) {
       expect(k).toBeTruthy();
       expect(v).toBeTruthy();
@@ -121,13 +123,14 @@ describe("ReadonlyWeakMap", () => {
 
 describe("ReadonlySet", () => {
   it("allows iteration using for..of", () => {
-    const map = readonlySet([
+    const set = readonlySet([
       [1, "one"],
       [2, "two"],
       [3, "three"],
     ]);
 
-    for (const [k, v] of map) {
+    // eslint-disable-next-line functional/prefer-immutable-types
+    for (const [k, v] of set) {
       expect(k).toBeTruthy();
       expect(v).toBeTruthy();
     }
@@ -136,12 +139,12 @@ describe("ReadonlySet", () => {
 
 describe("ReadonlyWeakSet", () => {
   it("doesn't throw", () => {
-    const map = readonlyWeakSet([
+    const set = readonlyWeakSet([
       [{}, "one"],
       [{}, "two"],
       [{}, "three"],
     ]);
 
-    expect(map).toBeDefined();
+    expect(set).toBeDefined();
   });
 });

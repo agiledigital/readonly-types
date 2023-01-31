@@ -1,3 +1,4 @@
+/* eslint-disable functional/prefer-immutable-types */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-restricted-globals */
 export type ReadonlyPartial<T> = Readonly<Partial<T>>;
@@ -9,6 +10,50 @@ export type ReadonlyPick<T, K extends keyof T> = Readonly<Pick<T, K>>;
 export type ReadonlyRecord<K extends string | number | symbol, T> = Readonly<
   Record<K, T>
 >;
+
+// Methods are technically mutable in TypeScript. There is no way to use method syntax and retain immutability. (OO strikes again)
+// Annoyingly, this includes methods on the built-in ReadonlySet type.
+//
+// eslint-plugin-functional, with its prefer-immutable-types rule, draws a distinction between (truly) `Immutable` types and those
+// types that would be fully immutable if not for pesky methods (which it calls `ReadonlyDeep`).
+// This is a useful distinction for practical reasons, so we reuse it here to create a (truly) ImmutableSet as distinct
+// from the (flawed) built-in ReadonlySet.
+//
+// The Readonly<T> type takes care of mutable methods for us, replacing them with readonly function properties.
+//
+// For example, the mutable method `has`:
+//
+// ```
+//   has(value: T): boolean;
+// ```
+//
+// becomes a readonly property:
+//
+// ```
+//   readonly has: (value: T) => boolean;
+// ```
+//
+// Note that this compiles:
+// ```
+//  export const foo = (set: ReadonlySet<string>): void => {
+//   set.has = () => true; // YOLO
+//  };
+// ```
+//
+// But this doesn't:
+// ```
+//  export const foo = (set: ImmutableSet<string>): void => {
+//   set.has = () => true; // doesn't compile
+//  };
+// ```
+//
+// TODO: Suggest a prefer-immutable-types fixer from ReadonlySet to ImmutableSet.
+//
+// @see https://github.com/eslint-functional/eslint-plugin-functional/blob/main/docs/rules/prefer-immutable-types.md#enforcement
+export type ImmutableSet<T> = Readonly<ReadonlySet<T>>;
+
+// As above.
+export type ImmutableMap<K, V> = Readonly<ReadonlyMap<K, V>>;
 
 /**
  * Drop keys `K` from `T`, where `K` must exist in `T`.
@@ -38,7 +83,7 @@ export const readonlyURLSearchParams = (
     | ReadonlyURLSearchParams
 ): ReadonlyURLSearchParams =>
   new URLSearchParams(
-    // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions, functional/prefer-readonly-type
     init as string[][] | Record<string, string> | string | URLSearchParams
   );
 
@@ -50,13 +95,13 @@ export const readonlyURL = (
   url: string,
   base?: string | URL | ReadonlyURL
 ): ReadonlyURL | undefined => {
-  // eslint-disable-next-line functional/no-try-statement
+  // eslint-disable-next-line functional/no-try-statements
   try {
-    // eslint-disable-next-line total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     return new URL(url, base as string | URL);
-    // eslint-disable-next-line no-empty
-  } catch {}
-  return undefined;
+  } catch {
+    return undefined;
+  }
 };
 
 export type ReadonlyDate = Readonly<
@@ -82,13 +127,13 @@ export type ReadonlyDate = Readonly<
 
 export const readonlyDate = (
   value: number | string | Date | ReadonlyDate
-  // eslint-disable-next-line total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 ): ReadonlyDate => new Date(value as number | string | Date);
 
 export const validReadonlyDate = (
   value: number | string | Date | ReadonlyDate
 ): ReadonlyDate | undefined => {
-  // eslint-disable-next-line total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const d = new Date(value as number | string | Date);
   return isNaN(d.getMilliseconds()) ? undefined : d;
 };
@@ -96,30 +141,25 @@ export const validReadonlyDate = (
 // eslint-disable-next-line functional/functional-parameters
 export const readonlyNow: () => number = () => Date.now();
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type ReadonlyWeakSet<T extends object> = Readonly<
   OmitStrict<WeakSet<T>, "add" | "delete">
 >;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type ReadonlyWeakMap<K extends object, V> = Readonly<
   OmitStrict<WeakMap<K, V>, "delete" | "set">
 >;
 
-export const readonlySet = <T>(values: Iterable<T>): ReadonlySet<T> =>
+export const readonlySet = <T>(values: Iterable<T>): ImmutableSet<T> =>
   new Set(values);
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export const readonlyWeakSet = <T extends object>(
   values: Iterable<T>
 ): ReadonlyWeakSet<T> => new WeakSet(values);
 
 export const readonlyMap = <K, V>(
   values: Iterable<readonly [K, V]>
-): ReadonlyMap<K, V> => new Map(values);
+): ImmutableMap<K, V> => new Map(values);
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export const readonlyWeakMap = <K extends object, V>(
   values: Iterable<readonly [K, V]>
-  // eslint-disable-next-line functional/prefer-readonly-type, total-functions/no-unsafe-type-assertion, @typescript-eslint/consistent-type-assertions
 ): ReadonlyWeakMap<K, V> => new WeakMap(values);
