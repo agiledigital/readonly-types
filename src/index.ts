@@ -1,6 +1,52 @@
 /* eslint-disable functional/prefer-immutable-types */
+/* eslint-disable @typescript-eslint/array-type */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-restricted-globals */
+
+import { AnyArray, IsTuple, IsUnknown } from "ts-essentials";
+
+// TODO: enforce deep readonly as a concession due to ReadonlyArray issue instead of disabling rule entirely
+// eslint-disable-next-line functional/type-declaration-immutability
+export type DeepImmutable<T> = T extends Date
+  ? ReadonlyDate
+  : T extends URL
+  ? ReadonlyURL
+  : T extends URLSearchParams
+  ? ReadonlyURLSearchParams
+  : // eslint-disable-next-line functional/prefer-readonly-type
+  T extends Map<infer K, infer V>
+  ? ImmutableMap<DeepImmutable<K>, DeepImmutable<V>>
+  : T extends ReadonlyMap<infer K, infer V>
+  ? ImmutableMap<DeepImmutable<K>, DeepImmutable<V>>
+  : T extends ImmutableMap<infer K, infer V>
+  ? ImmutableMap<DeepImmutable<K>, DeepImmutable<V>>
+  : T extends WeakMap<infer K, infer V>
+  ? ReadonlyWeakMap<DeepImmutable<K>, DeepImmutable<V>>
+  : T extends ReadonlyWeakMap<infer K, infer V>
+  ? ReadonlyWeakMap<DeepImmutable<K>, DeepImmutable<V>>
+  : // eslint-disable-next-line functional/prefer-readonly-type
+  T extends Set<infer U>
+  ? ImmutableSet<DeepImmutable<U>>
+  : T extends ReadonlySet<infer U>
+  ? ImmutableSet<DeepImmutable<U>>
+  : T extends ImmutableSet<infer U>
+  ? ImmutableSet<DeepImmutable<U>>
+  : T extends WeakSet<infer U>
+  ? ReadonlyWeakSet<DeepImmutable<U>>
+  : T extends ReadonlyWeakSet<infer U>
+  ? ReadonlyWeakSet<DeepImmutable<U>>
+  : T extends Promise<infer U>
+  ? ReadonlyPromise<DeepImmutable<U>>
+  : T extends AnyArray<infer U>
+  ? T extends IsTuple<T>
+    ? { readonly [K in keyof T]: DeepImmutable<T[K]> }
+    : ReadonlyArray<DeepImmutable<U>>
+  : T extends {}
+  ? { readonly [K in keyof T]: DeepImmutable<T[K]> }
+  : IsUnknown<T> extends true
+  ? unknown
+  : Readonly<T>;
+
 export type ReadonlyPartial<T> = Readonly<Partial<T>>;
 
 export type ReadonlyRequired<T> = Readonly<Required<T>>;
@@ -10,6 +56,8 @@ export type ReadonlyPick<T, K extends keyof T> = Readonly<Pick<T, K>>;
 export type ReadonlyRecord<K extends string | number | symbol, T> = Readonly<
   Record<K, T>
 >;
+
+export type ReadonlyPromise<T> = Readonly<Promise<T>>;
 
 // Methods are technically mutable in TypeScript. There is no way to use method syntax and retain immutability. (OO strikes again)
 // Annoyingly, this includes methods on the built-in ReadonlySet type.

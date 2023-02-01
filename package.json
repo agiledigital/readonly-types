@@ -47,5 +47,8 @@
     "ignoreCatch": false,
     "strict": true,
     "detail": true
+  },
+  "dependencies": {
+    "ts-essentials": "^9.3.0"
   }
 }
