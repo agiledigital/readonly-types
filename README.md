@@ -90,3 +90,4 @@ These lint rules are configured by [eslint-config-typed-fp](https://github.com/d
   * https://github.com/krzkaczor/ts-essentials#deep-partial--deep-required--deep-readonly--deep-nonnullable
   * https://github.com/piotrwitek/utility-types#deepreadonlyt
   * And finally, a hypothetical stricter version: https://github.com/agiledigital/readonly-types/issues/517
+* To see ReadonlyDate adoption grow, upvote this: https://github.com/date-fns/date-fns/issues/1944
