@@ -37,7 +37,7 @@ const setFooSearchParam = (url: ReadonlyURL) => url.searchParams.set("foo", "bar
 * ReadonlyURL (for [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL))
 * ReadonlyURLSearchParams (for [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams))
 * ReadonlyDate (for [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
-* ImmutableArray, ImmutableSet and ImmutableMap (which are truly immutable versions of the [surprisingly mutable built-in ReadonlyArray, ReadonlySet and ReadonlyMap types](https://github.com/agiledigital/readonly-types/blob/master/src/index.ts#L14-L56))
+* ImmutableArray, ImmutableSet and ImmutableMap (which are truly immutable versions of the [surprisingly mutable built-in ReadonlyArray, ReadonlySet and ReadonlyMap types](https://github.com/agiledigital/readonly-types/blob/master/src/index.ts#L58-L110))
 * ReadonlyWeakSet (for [WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet))
 * ReadonlyWeakMap (for [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap))
 * DeepImmutable (a stricter version of [DeepReadonly from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181) that takes all the above into consideration)
