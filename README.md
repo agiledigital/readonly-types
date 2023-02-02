@@ -7,7 +7,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/danielnixon/readonly-types/badge.svg?targetFile=package.json)](https://snyk.io/test/github/danielnixon/readonly-types?targetFile=package.json)
 [![npm](https://img.shields.io/npm/v/readonly-types.svg)](https://www.npmjs.com/package/readonly-types)
 
-A collection of readonly TypeScript types inspired by the built-in `ReadonlyArray`, `ReadonlyMap`, etc.
+A collection of readonly TypeScript types inspired by TypeScript's built-in readonly types (`ReadonlyArray`, `ReadonlyMap`, etc) and by [is-immutable-type](https://github.com/RebeccaStevens/is-immutable-type).
 
 ## Installation
 
