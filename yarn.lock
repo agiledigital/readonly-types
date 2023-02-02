@@ -904,7 +904,7 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
-"@types/node@*", "@types/node@^18.11.18":
+"@types/node@*":
   version "18.11.18"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
   integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
@@ -977,7 +977,7 @@
     "@typescript-eslint/types" "5.50.0"
     "@typescript-eslint/visitor-keys" "5.50.0"
 
-"@typescript-eslint/type-utils@5.50.0":
+"@typescript-eslint/type-utils@5.50.0", "@typescript-eslint/type-utils@^5.50.0":
   version "5.50.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/type-utils/-/type-utils-5.50.0.tgz#509d5cc9728d520008f7157b116a42c5460e7341"
   integrity sha512-dcnXfZ6OGrNCO7E5UY/i0ktHb7Yx1fV6fnQGGrlnfDhilcs6n19eIRcvLBqx6OQkrPaFlDPk3OJ0WlzQfrV0bQ==
@@ -1382,9 +1382,9 @@ camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001449:
-  version "1.0.30001449"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001449.tgz#a8d11f6a814c75c9ce9d851dc53eb1d1dfbcd657"
-  integrity sha512-CPB+UL9XMT/Av+pJxCKGhdx+yg1hzplvFJQlJ2n68PyQGMz9L/E2zCyLdOL8uasbouTUgnPl+y0tccI/se+BEw==
+  version "1.0.30001450"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001450.tgz#022225b91200589196b814b51b1bbe45144cf74f"
+  integrity sha512-qMBmvmQmFXaSxexkjjfMvD5rnDL0+m+dUMZKoDYsGG8iZN29RuYh9eRoMvKsT6uMAWlyUUGDEQGJJYjzCIO9ew==
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -1823,15 +1823,15 @@ eslint-module-utils@^2.7.4:
   dependencies:
     debug "^3.2.7"
 
-eslint-plugin-functional@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-functional/-/eslint-plugin-functional-5.0.0.tgz#7caf899105a946bd45d0afe79c95de0df2290ea4"
-  integrity sha512-m+eOc59wv48azpnrQ1w/2QgxkudfQX15Hn3/5OvFVufDIc93Ar3C81pppL4TfTaqcJVD2KTYiOHHuwphp1Z66Q==
+eslint-plugin-functional@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-functional/-/eslint-plugin-functional-5.0.1.tgz#ba6b6afa7513142977443d6a9c7344f537a857fa"
+  integrity sha512-zwl6daCIlr3ljGg+4mp9+LWoOzgzj3gY04XPa5w6xaEOgNnpmUiZMim0aTlKbuKwfpnpZ7SzpscrtA0/04+ugQ==
   dependencies:
     "@typescript-eslint/utils" "^5.49.0"
     deepmerge-ts "^4.2.2"
     escape-string-regexp "^4.0.0"
-    is-immutable-type "^1.2.3"
+    is-immutable-type "^1.2.4"
     semver "^7.3.8"
 
 eslint-plugin-import@^2.27.5:
@@ -2647,10 +2647,10 @@ is-glob@^4.0.0, is-glob@^4.0.1, is-glob@^4.0.3:
   dependencies:
     is-extglob "^2.1.1"
 
-is-immutable-type@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/is-immutable-type/-/is-immutable-type-1.2.3.tgz#1613e5a335362d5bd73fe7fd0b7ee32450534dfb"
-  integrity sha512-DhrZmo/MFG8C2DTsh8YFTLxchMkkiD/fg4dLtxd+OEdqHHjH9u7aXGxDfBCvxxpP/KBkz+vbqzfTJ+v7BcQF0w==
+is-immutable-type@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/is-immutable-type/-/is-immutable-type-1.2.4.tgz#128cf9af71331cfe301fa6f0680f1b482adc6b33"
+  integrity sha512-H/famjtztrVEl/P9izGTFLEJjmKsDoj+WBMVo+oSSDEuNTZpJFDn37/ovEb+3a3K5UU8zdkVUwBgddeBPH41pA==
 
 is-interactive@^2.0.0:
   version "2.0.0"
