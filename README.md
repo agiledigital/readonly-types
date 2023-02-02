@@ -83,11 +83,4 @@ These lint rules are configured by [eslint-config-typed-fp](https://github.com/d
 * https://github.com/danielnixon/eslint-config-typed-fp
 * https://github.com/immutable-js/immutable-js
 * https://github.com/jonaskello/eslint-plugin-functional
-* For a DeepReadonly implementation:
-  * Upvote this issue to see DeepReadonly built into TypeScript itself: https://github.com/microsoft/TypeScript/issues/13923
-  * https://github.com/ts-essentials/ts-essentials#Deep-wrapper-types
-  * https://github.com/sindresorhus/type-fest/blob/main/source/readonly-deep.d.ts
-  * https://github.com/krzkaczor/ts-essentials#deep-partial--deep-required--deep-readonly--deep-nonnullable
-  * https://github.com/piotrwitek/utility-types#deepreadonlyt
-  * And finally, a hypothetical stricter version: https://github.com/agiledigital/readonly-types/issues/517
 * To see ReadonlyDate adoption grow, upvote this: https://github.com/date-fns/date-fns/issues/1944
