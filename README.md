@@ -40,7 +40,7 @@ const setFooSearchParam = (url: ReadonlyURL) => url.searchParams.set("foo", "bar
 * ImmutableArray, ImmutableSet and ImmutableMap (which are truly immutable versions of the [surprisingly mutable built-in ReadonlyArray, ReadonlySet and ReadonlyMap types](https://github.com/agiledigital/readonly-types/blob/master/src/index.ts#L14-L56))
 * ReadonlyWeakSet (for [WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet))
 * ReadonlyWeakMap (for [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap))
-* DeepImmutable (a stricter version of [DeepReadonly from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181) that takes all the above into consideration
+* DeepImmutable (a stricter version of [DeepReadonly from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181) that takes all the above into consideration)
 * PRs welcome!
 
 ## Linting
