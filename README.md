@@ -9,6 +9,8 @@
 
 A collection of readonly TypeScript types inspired by TypeScript's built-in readonly types (`ReadonlyArray`, `ReadonlyMap`, etc) and by [is-immutable-type](https://github.com/RebeccaStevens/is-immutable-type).
 
+The types here are all fully `Immutable` following [is-immutable-type#definitions](https://github.com/RebeccaStevens/is-immutable-type#definitions).
+
 ## Installation
 
 ```sh
