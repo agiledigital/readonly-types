@@ -5,8 +5,6 @@
 
 import { AnyArray, IsTuple, IsUnknown } from "ts-essentials";
 
-// TODO: enforce deep readonly as a concession due to ReadonlyArray issue instead of disabling rule entirely
-// eslint-disable-next-line functional/type-declaration-immutability
 export type DeepImmutable<T> = T extends Date
   ? ReadonlyDate
   : T extends URL
@@ -40,7 +38,7 @@ export type DeepImmutable<T> = T extends Date
   : T extends AnyArray<infer U>
   ? T extends IsTuple<T>
     ? { readonly [K in keyof T]: DeepImmutable<T[K]> }
-    : ReadonlyArray<DeepImmutable<U>>
+    : ImmutableArray<DeepImmutable<U>>
   : T extends {}
   ? { readonly [K in keyof T]: DeepImmutable<T[K]> }
   : IsUnknown<T> extends true
@@ -56,6 +54,14 @@ export type ReadonlyPick<T, K extends keyof T> = Readonly<Pick<T, K>>;
 export type ReadonlyRecord<K extends string | number | symbol, T> = Readonly<
   Record<K, T>
 >;
+
+// From https://github.com/RebeccaStevens/is-immutable-type/#making-readonlydeep-types-immutable (what am amazing lib)
+export type ImmutableShallow<T extends {}> = {
+  readonly [P in keyof T & {}]: T[P];
+};
+
+// https://github.com/agiledigital/readonly-types/issues/518
+export type ImmutableArray<T> = ImmutableShallow<ReadonlyArray<T>>;
 
 export type ReadonlyPromise<T> = Readonly<Promise<T>>;
 
