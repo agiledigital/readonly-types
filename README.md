@@ -49,7 +49,7 @@ The first column ("Even Better 🚀") contains types that are more than just imm
 | [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`), [immutable-js](https://github.com/immutable-js/immutable-js/)'s types | `ImmutableArray` | `ReadonlyArray` | | `Array` |
 | [immutable-js](https://github.com/immutable-js/immutable-js/)'s types | `ImmutableSet` | `ReadonlySet` | | `Set` |
 | [immutable-js](https://github.com/immutable-js/immutable-js/)'s types | `ImmutableMap` | `ReadonlyMap` | | `Map` |
-| [immutable-js](https://github.com/immutable-js/immutable-js/)'s types | `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
+| | `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
 | | `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
 | | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
 | | `ReadonlyRegExp` | | | `RegExp` |
