@@ -36,23 +36,25 @@ const setFooSearchParam = (url: ReadonlyURL) => url.searchParams.set("foo", "bar
 
 ## The Types
 
-The first column contains the types provided by this library (which are all `Immutable`). The other columns show the types being replaced and what level of immutability they achieve by default.
+The second column contains the types provided by this library (which are all `Immutable`). The other columns show the types being replaced and what level of immutability they achieve by default.
 
-| Immutable | ReadonlyDeep | ReadonlyShallow | Mutable |
-|-----------|--------------|-----------------|---------|
-| `ReadonlyRecord` | | | [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkt) |
-| `ReadonlyURL` | | | [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) | 
-| `ReadonlyURLSearchParams` | | | [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) |
-| `ReadonlyDate` | | | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
-| `ImmutableArray` | `ReadonlyArray` | | `Array` |
-| `ImmutableSet` | `ReadonlySet` | | `Set` |
-| `ImmutableMap` | `ReadonlyMap` | | `Map` |
-| `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
-| `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
-| `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
-| `ReadonlyRegExp` | | | `RegExp` |
-| `ReadonlyPromise` | `Promise` | | |
-| `DeepImmutable` | | | [`DeepReadonly` from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181), which when used will produce a mix of `Mutable` and `ReadonlyDeep` types |
+The first column ("Even Better 🚀") contains types that are more than just immutable versions of the types in the later columns. These "even better" options require more effort to adopt than those in the second column (or may not even be generally available yet), but they're worth considering if you want something that is more closely aligned with a pure typeful functional programming approach.
+
+| Even Better 🚀 | Immutable | ReadonlyDeep | ReadonlyShallow | Mutable |
+|----------------|-----------|--------------|-----------------|---------|
+| | `ReadonlyRecord` | | | [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkt) |
+| | `ReadonlyURL` | | | [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) | 
+| | `ReadonlyURLSearchParams` | | | [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) |
+| [Temporal](https://tc39.es/proposal-temporal/docs/ambiguity.html) (stage 3 proposal, aims to solve various problems in `Date`, including its mutability) | `ReadonlyDate` | | | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
+| [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`) | `ImmutableArray` | `ReadonlyArray` | | `Array` |
+| | `ImmutableSet` | `ReadonlySet` | | `Set` |
+| | `ImmutableMap` | `ReadonlyMap` | | `Map` |
+| | `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
+| | `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
+| | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
+| | `ReadonlyRegExp` | | | `RegExp` |
+| [fp-ts's `TaskEither`](https://gcanti.github.io/fp-ts/modules/TaskEither.ts.html) | `ReadonlyPromise` | `Promise` | | |
+| | `DeepImmutable` | | | [`DeepReadonly` from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181), which when used will produce a mix of `Mutable` and `ReadonlyDeep` types |
 * PRs welcome!
 
 ## Linting
