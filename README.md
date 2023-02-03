@@ -45,7 +45,7 @@ The first column ("Even Better 🚀") contains types that are more than just imm
 | | `ReadonlyRecord` | | | [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkt) |
 | | `ReadonlyURL` | | | [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) | 
 | | `ReadonlyURLSearchParams` | | | [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) |
-| [Temporal](https://tc39.es/proposal-temporal/docs/ambiguity.html) (stage 3 proposal, aims to solve various problems in `Date`, including its mutability) | `ReadonlyDate` | | | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
+| [Temporal](https://tc39.es/proposal-temporal/) (stage 3 proposal, aims to solve various problems in `Date`, including its mutability) | `ReadonlyDate` | | | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
 | [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`) | `ImmutableArray` | `ReadonlyArray`, [immutable-js](https://github.com/immutable-js/immutable-js/)'s `List` | | `Array` |
 | | `ImmutableSet` | `ReadonlySet`, immutable-js's `Set` | | `Set` |
 | | `ImmutableMap` | `ReadonlyMap`, immutable-js's `Map` | | `Map` |
