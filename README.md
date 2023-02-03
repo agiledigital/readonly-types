@@ -46,10 +46,10 @@ The first column ("Even Better 🚀") contains types that are more than just imm
 | | `ReadonlyURL` | | | [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) | 
 | | `ReadonlyURLSearchParams` | | | [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) |
 | [Temporal](https://tc39.es/proposal-temporal/docs/ambiguity.html) (stage 3 proposal, aims to solve various problems in `Date`, including its mutability) | `ReadonlyDate` | | | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
-| [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`) | `ImmutableArray` | `ReadonlyArray` | | `Array` |
-| | `ImmutableSet` | `ReadonlySet` | | `Set` |
-| | `ImmutableMap` | `ReadonlyMap` | | `Map` |
-| | `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
+| [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`), [immutable-js](https://github.com/immutable-js/immutable-js/)'s types | `ImmutableArray` | `ReadonlyArray` | | `Array` |
+| [immutable-js](https://github.com/immutable-js/immutable-js/)'s types | `ImmutableSet` | `ReadonlySet` | | `Set` |
+| [immutable-js](https://github.com/immutable-js/immutable-js/)'s types | `ImmutableMap` | `ReadonlyMap` | | `Map` |
+| [immutable-js](https://github.com/immutable-js/immutable-js/)'s types | `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
 | | `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
 | | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
 | | `ReadonlyRegExp` | | | `RegExp` |
