@@ -36,7 +36,7 @@ const setFooSearchParam = (url: ReadonlyURL) => url.searchParams.set("foo", "bar
 
 ## The Types
 
-The second column contains the types provided by this library (which are all `Immutable`). The other columns show the types being replaced and what level of immutability they achieve by default.
+The second column contains the types provided by this library (which are all `Immutable`). The columns to the right of it show the types being replaced and what level of immutability they achieve by default.
 
 The first column ("Even Better 🚀") contains types that are more than just immutable versions of the types in the later columns. These "even better" options require more effort to adopt than those in the second column (or may not even be generally available yet), but they're worth considering if you want something that is more closely aligned with a pure typeful functional programming approach.
 
