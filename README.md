@@ -51,7 +51,7 @@ The first column contains the types provided by this library (which are all `Imm
 | `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
 | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
 | `ReadonlyRegExp` | | | `RegExp` |
-| `ReadonlyPromise` | | | `Promise` |
+| `ReadonlyPromise` | `Promise` | | |
 | `DeepImmutable` | | | [`DeepReadonly` from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181), which when used will produce a mix of `Mutable` and `ReadonlyDeep` types |
 * PRs welcome!
 
