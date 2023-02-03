@@ -40,16 +40,18 @@ The first column contains the types provided by this library (which are all `Imm
 
 | Immutable | ReadonlyDeep | ReadonlyShallow | Mutable |
 |-----------|--------------|-----------------|---------|
-| ReadonlyRecord | | | [Record](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkt) |
-| ReadonlyURL | | | [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL) | 
-| ReadonlyURLSearchParams | | | [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) |
-| ReadonlyDate | | | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
-| ImmutableArray | ReadonlyArray | | Array |
-| ImmutableSet | ReadonlySet | | Set |
-| ImmutableMap | ReadonlyMap | | Map |
-| ReadonlyWeakSet | | | [WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
-| ReadonlyWeakMap | | | [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
-| DeepImmutable | | | [DeepReadonly from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181), which when used will produce a mix of Mutable and ReadonlyDeep types |
+| `ReadonlyRecord` | | | [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkt) |
+| `ReadonlyURL` | | | [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) | 
+| `ReadonlyURLSearchParams` | | | [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) |
+| `ReadonlyDate` | | | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
+| `ImmutableArray` | `ReadonlyArray` | | `Array` |
+| `ImmutableSet` | `ReadonlySet` | | `Set` |
+| `ImmutableMap` | `ReadonlyMap` | | `Map` |
+| `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
+| `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
+| `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
+| `ReadonlyRegExp` | | | `RegExp` |
+| `DeepImmutable` | | | [`DeepReadonly` from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181), which when used will produce a mix of `Mutable` and `ReadonlyDeep` types |
 * PRs welcome!
 
 ## Linting
