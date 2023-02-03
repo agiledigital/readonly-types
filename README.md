@@ -95,6 +95,9 @@ These lint rules are configured by [eslint-config-typed-fp](https://github.com/d
 
 ## See Also
 * https://github.com/danielnixon/eslint-config-typed-fp
-* https://github.com/immutable-js/immutable-js
+* Purpose built immutable types
+  * https://github.com/immerjs/immer
+  * https://github.com/immutable-js/immutable-js
+  * https://github.com/rtfeldman/seamless-immutable
 * https://github.com/jonaskello/eslint-plugin-functional
 * To see ReadonlyDate adoption grow, upvote this: https://github.com/date-fns/date-fns/issues/1944
