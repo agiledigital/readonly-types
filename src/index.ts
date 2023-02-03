@@ -1,4 +1,3 @@
-/* eslint-disable functional/prefer-immutable-types */
 /* eslint-disable @typescript-eslint/array-type */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-restricted-globals */
@@ -123,10 +122,12 @@ export type ReadonlyURLSearchParams = Readonly<
   OmitStrict<URLSearchParams, "append" | "delete" | "set" | "sort">
 > & {
   // TODO why isn't this included in the above type?
+  // eslint-disable-next-line functional/prefer-immutable-types
   readonly [Symbol.iterator]: () => IterableIterator<readonly [string, string]>;
 };
 
 export const readonlyURLSearchParams = (
+  // eslint-disable-next-line functional/prefer-immutable-types
   init?:
     | readonly (readonly string[])[]
     // eslint-disable-next-line functional/prefer-readonly-type
@@ -147,6 +148,7 @@ export type ReadonlyURL = Readonly<OmitStrict<URL, "searchParams">> & {
 
 export const readonlyURL = (
   url: string,
+  // eslint-disable-next-line functional/prefer-immutable-types
   base?: string | URL | ReadonlyURL
 ): ReadonlyURL | undefined => {
   // eslint-disable-next-line functional/no-try-statements
@@ -180,15 +182,17 @@ export type ReadonlyDate = Readonly<
 >;
 
 export const readonlyDate = (
+  // eslint-disable-next-line functional/prefer-immutable-types
   value: number | string | Date | ReadonlyDate
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 ): ReadonlyDate => new Date(value as number | string | Date);
 
 export const validReadonlyDate = (
+  // eslint-disable-next-line functional/prefer-immutable-types
   value: number | string | Date | ReadonlyDate
 ): ReadonlyDate | undefined => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  const d = new Date(value as number | string | Date);
+  const d: ReadonlyDate = new Date(value as number | string | Date);
   return isNaN(d.getMilliseconds()) ? undefined : d;
 };
 
@@ -203,17 +207,32 @@ export type ReadonlyWeakMap<K extends object, V> = Readonly<
   OmitStrict<WeakMap<K, V>, "delete" | "set">
 >;
 
+// eslint-disable-next-line functional/prefer-immutable-types
 export const readonlySet = <T>(values: Iterable<T>): ImmutableSet<T> =>
   new Set(values);
 
 export const readonlyWeakSet = <T extends object>(
+  // eslint-disable-next-line functional/prefer-immutable-types
   values: Iterable<T>
 ): ReadonlyWeakSet<T> => new WeakSet(values);
 
 export const readonlyMap = <K, V>(
+  // eslint-disable-next-line functional/prefer-immutable-types
   values: Iterable<readonly [K, V]>
 ): ImmutableMap<K, V> => new Map(values);
 
 export const readonlyWeakMap = <K extends object, V>(
+  // eslint-disable-next-line functional/prefer-immutable-types
   values: Iterable<readonly [K, V]>
 ): ReadonlyWeakMap<K, V> => new WeakMap(values);
+
+export type ReadonlyError = Readonly<Error>;
+export type ReadonlyEvalError = Readonly<EvalError>;
+export type ReadonlyRangeError = Readonly<RangeError>;
+export type ReadonlyReferenceError = Readonly<ReferenceError>;
+export type ReadonlySyntaxError = Readonly<SyntaxError>;
+export type ReadonlyTypeError = Readonly<TypeError>;
+export type ReadonlyURIError = Readonly<URIError>;
+// TODO AggregateError
+
+export type ReadonlyRegExp = Readonly<RegExp>;
