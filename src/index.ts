@@ -152,8 +152,9 @@ export const readonlyURL = (
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     return new URL(url, base as string | URL);
   } catch {
-    return undefined;
+    /* returning undefined below results in a better mutation score */
   }
+  return undefined;
 };
 
 export type ReadonlyDate = Readonly<
