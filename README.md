@@ -1,10 +1,10 @@
 # Readonly TypeScript Types
 
-[![Build Status](https://github.com/danielnixon/readonly-types/actions/workflows/main.yml/badge.svg)](https://github.com/danielnixon/readonly-types/actions/workflows/main.yml)
-[![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fdanielnixon%2Freadonly-types%2Fmaster%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
-[![codecov](https://codecov.io/gh/danielnixon/readonly-types/branch/master/graph/badge.svg?token=SYO6NY3DF0)](https://codecov.io/gh/danielnixon/readonly-types)
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fdanielnixon%2Freadonly-types%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/danielnixon/readonly-types/master)
-[![Known Vulnerabilities](https://snyk.io/test/github/danielnixon/readonly-types/badge.svg?targetFile=package.json)](https://snyk.io/test/github/danielnixon/readonly-types?targetFile=package.json)
+[![Build Status](https://github.com/agiledigital/readonly-types/actions/workflows/main.yml/badge.svg)](https://github.com/agiledigital/readonly-types/actions/workflows/main.yml)
+[![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fagiledigital%2Freadonly-types%2Fmaster%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
+[![codecov](https://codecov.io/gh/agiledigital/readonly-types/branch/master/graph/badge.svg?token=SYO6NY3DF0)](https://codecov.io/gh/agiledigital/readonly-types)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fagiledigital%2Freadonly-types%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/agiledigital/readonly-types/master)
+[![Known Vulnerabilities](https://snyk.io/test/github/agiledigital/readonly-types/badge.svg?targetFile=package.json)](https://snyk.io/test/github/agiledigital/readonly-types?targetFile=package.json)
 [![npm](https://img.shields.io/npm/v/readonly-types.svg)](https://www.npmjs.com/package/readonly-types)
 
 A collection of readonly TypeScript types inspired by TypeScript's built-in readonly types (`ReadonlyArray`, `ReadonlyMap`, etc) and by [is-immutable-type](https://github.com/RebeccaStevens/is-immutable-type).
