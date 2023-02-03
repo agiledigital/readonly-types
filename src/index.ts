@@ -119,7 +119,7 @@ export type OmitStrict<T, K extends keyof T> = T extends any
   : never;
 
 export type ReadonlyURLSearchParams = Readonly<
-  OmitStrict<URLSearchParams, "append" | "delete" | "set" | "sort">
+  OmitStrict<URLSearchParams, "append" | "delete" | "set" | "sort" | "forEach">
 >;
 
 export const readonlyURLSearchParams = (
