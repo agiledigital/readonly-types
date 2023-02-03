@@ -120,11 +120,7 @@ export type OmitStrict<T, K extends keyof T> = T extends any
 
 export type ReadonlyURLSearchParams = Readonly<
   OmitStrict<URLSearchParams, "append" | "delete" | "set" | "sort">
-> & {
-  // TODO why isn't this included in the above type?
-  // eslint-disable-next-line functional/prefer-immutable-types
-  readonly [Symbol.iterator]: () => IterableIterator<readonly [string, string]>;
-};
+>;
 
 export const readonlyURLSearchParams = (
   // eslint-disable-next-line functional/prefer-immutable-types

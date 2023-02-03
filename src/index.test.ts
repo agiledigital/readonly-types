@@ -66,6 +66,22 @@ describe("ReadonlyURLSearchParams", () => {
     const x = readonlyURLSearchParams("");
     expect(x).toBeDefined();
   });
+  it("allows iteration using for..of", () => {
+    const params = readonlyURLSearchParams({ a: "b" });
+
+    expect(params[Symbol.iterator]).toBeDefined();
+
+    // eslint-disable-next-line functional/prefer-immutable-types
+    for (const [k, v] of params) {
+      expect(k).toBe("a");
+      expect(v).toBe("b");
+    }
+
+    /* eslint-disable functional/immutable-data, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/consistent-type-assertions, @typescript-eslint/ban-ts-comment */
+    // @ts-expect-error
+    params[Symbol.iterator] = null as any;
+    /* eslint-enable functional/immutable-data, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/consistent-type-assertions, @typescript-eslint/ban-ts-comment */
+  });
 });
 
 describe("ReadonlyDate", () => {
