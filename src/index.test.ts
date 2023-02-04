@@ -17,6 +17,8 @@ import {
   readonlyURLSearchParams,
   readonlySet,
   readonlyWeakSet,
+  principledArray,
+  PrincipledArray,
 } from ".";
 
 describe("ReadonlyURL", () => {
@@ -162,5 +164,116 @@ describe("ReadonlyWeakSet", () => {
     ]);
 
     expect(set).toBeDefined();
+  });
+});
+
+describe("PrincipledArray", () => {
+  it("can be mapped", () => {
+    const foo = principledArray(["a"]);
+
+    expect(foo.map((s) => s.toUpperCase())).toStrictEqual(["A"]);
+  });
+
+  it("can be flatMapped", () => {
+    const foo = principledArray(["a"]);
+
+    expect(
+      foo.flatMap((s) => principledArray([s.toUpperCase()]))
+    ).toStrictEqual(["A"]);
+  });
+
+  it("can be flattened", () => {
+    const foo = principledArray([
+      principledArray(["a"]),
+      principledArray(["b"]),
+    ]);
+
+    const flattened: PrincipledArray<string> = foo.flat();
+
+    expect(flattened).toStrictEqual(["a", "b"]);
+  });
+
+  it("can be flattened when nested level is regular array", () => {
+    // eslint-disable-next-line functional/prefer-immutable-types
+    const foo = principledArray([["a"], ["b"]]);
+
+    const flattened: PrincipledArray<string> = foo.flat();
+
+    expect(flattened).toStrictEqual(["a", "b"]);
+  });
+
+  it("can be flattened when nested level is mixed", () => {
+    // eslint-disable-next-line functional/prefer-immutable-types
+    const foo = principledArray([["a"], principledArray(["b"]), "c"]);
+
+    const flattened: PrincipledArray<string> = foo.flat();
+
+    expect(flattened).toStrictEqual(["a", "b", "c"]);
+  });
+
+  it("can be filtered with a boolean predicate", () => {
+    const foo = principledArray(["a", "b"]);
+
+    expect(foo.filter((s) => s !== "b")).toStrictEqual(["a"]);
+  });
+
+  it("can be filtered with a type guard predicate", () => {
+    const foo = principledArray(["a", "b"]);
+
+    const isLetterA = (s: string): s is "a" => s === "a";
+
+    const aArray: PrincipledArray<"a"> = foo.filter(isLetterA);
+
+    expect(aArray).toStrictEqual(["a"]);
+  });
+
+  // eslint-disable-next-line jest/expect-expect
+  it("does not expose forEach", () => {
+    const foo = principledArray(["a", "b"]);
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    foo.forEach(() => {});
+  });
+
+  it("can be concatenated with a single value", () => {
+    const foo = principledArray(["a"]);
+
+    const bar: PrincipledArray<string> = foo.concat("b");
+
+    expect(bar).toStrictEqual(["a", "b"]);
+  });
+
+  it("can be concatenated with another array", () => {
+    const foo = principledArray(["a"]);
+
+    const bar: PrincipledArray<string> = foo.concat(["b"]);
+
+    expect(bar).toStrictEqual(["a", "b"]);
+  });
+
+  it("can be concatenated with a spread array", () => {
+    const foo = principledArray(["a"]);
+
+    const bar: PrincipledArray<string> = foo.concat(...["b"]);
+
+    expect(bar).toStrictEqual(["a", "b"]);
+  });
+
+  it("can be concatenated with a principled array", () => {
+    const foo = principledArray(["a"]);
+
+    const bar: PrincipledArray<string> = foo.concat(principledArray(["b"]));
+
+    expect(bar).toStrictEqual(["a", "b"]);
+  });
+
+  it("can be sliced", () => {
+    const foo = principledArray(["a"]);
+
+    const bar = foo.slice(0, 1);
+
+    expect(bar).toStrictEqual(["a"]);
   });
 });

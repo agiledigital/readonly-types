@@ -2,8 +2,11 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-restricted-globals */
 
-import { AnyArray, IsTuple, IsUnknown } from "ts-essentials";
+import { IsTuple, IsUnknown } from "ts-essentials";
 
+/**
+ * as per DeepReadonly from ts-essentials but additionally accounts for the readonly/immutable types from this package.
+ */
 export type DeepImmutable<T> = T extends Date
   ? ReadonlyDate
   : T extends URL
@@ -63,6 +66,123 @@ export type ImmutableShallow<T extends {}> = {
 export type ImmutableArray<T> = ImmutableShallow<ReadonlyArray<T>>;
 
 export type ReadonlyPromise<T> = Readonly<Promise<T>>;
+
+/**
+ * as per AnyArray from ts-essentials but includes our PrincipledArray and ImmutableArray types as well.
+ */
+export type AnyArray<T> =
+  | PrincipledArray<T>
+  | ImmutableArray<T>
+  | ReadonlyArray<T>
+  // eslint-disable-next-line functional/prefer-readonly-type
+  | Array<T>;
+
+/**
+ * Recursive machinery to implement PrincipledArray's flat method. Copied from TypeScript standard lib
+ * with necessary changes to accommodate our array types.
+ */
+type FlatArray<Arr, Depth extends number> = {
+  readonly done: Arr;
+  readonly recur: Arr extends AnyArray<infer InnerArr>
+    ? FlatArray<
+        InnerArr,
+        // eslint-disable-next-line functional/prefer-readonly-type
+        [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ][Depth]
+      >
+    : Arr;
+}[Depth extends -1 ? "done" : "recur"];
+
+/**
+ * Concat machinery, copied from TypeScript standard lib
+ * with necessary changes to accommodate our array types.
+ */
+export type ConcatArray<T> = {
+  readonly length: number;
+  readonly [n: number]: T;
+  readonly join: (separator?: string) => string;
+  readonly slice: (
+    start?: number,
+    end?: number
+  ) => PrincipledArray<T> | ImmutableArray<T>;
+};
+
+/**
+ * A principled immutable array type.
+ * @see https://github.com/agiledigital/readonly-types/issues/518
+ */
+export type PrincipledArray<T> = ImmutableShallow<
+  OmitStrict<
+    ImmutableArray<T>,
+    // TODO: every, find, findIndex, reduce, reduceRight, some
+    "map" | "filter" | "forEach" | "flatMap" | "flat" | "concat" | "slice"
+  >
+> & {
+  readonly map: <U, This = undefined>(
+    callbackfn: (value: T, index: number, array: PrincipledArray<T>) => U,
+    thisArg?: This
+  ) => PrincipledArray<U>;
+
+  readonly filter: <S extends T = T, This = undefined>(
+    predicate:
+      | ((value: T, index: number, array: PrincipledArray<T>) => value is S)
+      | ((value: T, index: number, array: PrincipledArray<T>) => boolean),
+    thisArg?: This
+  ) => PrincipledArray<S>;
+
+  readonly flatMap: <U, This = undefined>(
+    callback: (
+      value: T,
+      index: number,
+      array: PrincipledArray<T>
+    ) => U | PrincipledArray<U> | ImmutableArray<U>,
+    thisArg?: This
+  ) => PrincipledArray<U>;
+
+  readonly flat: <A, D extends number = 1>(
+    this: A,
+    depth?: D
+  ) => PrincipledArray<FlatArray<A, D>>;
+
+  readonly concat: (
+    // eslint-disable-next-line functional/prefer-immutable-types
+    ...items: readonly (T | ConcatArray<T>)[]
+  ) => PrincipledArray<T>;
+
+  readonly slice: (start?: number, end?: number) => PrincipledArray<T>;
+};
+
+/**
+ * Copies the provided immutable array and returns the result as a principled array.
+ */
+export const principledArray = <T>(
+  immutableArray: ImmutableArray<T>
+): PrincipledArray<T> => {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  return [...immutableArray] as PrincipledArray<T>;
+};
 
 // Methods are technically mutable in TypeScript. There is no way to use method syntax and retain immutability. (OO strikes again)
 // Annoyingly, this includes methods on the built-in ReadonlySet type.
