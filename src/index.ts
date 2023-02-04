@@ -136,12 +136,22 @@ export type ConcatArray<T> = {
 export type PrincipledArray<T> = ImmutableShallow<
   OmitStrict<
     ImmutableArray<T>,
-    // TODO: every, find, findIndex, reduce, reduceRight, some
-    "map" | "filter" | "forEach" | "flatMap" | "flat" | "concat" | "slice"
+    // TODO: reduce, reduceRight
+    | "map"
+    | "filter"
+    | "forEach"
+    | "flatMap"
+    | "flat"
+    | "concat"
+    | "slice"
+    | "every"
+    | "some"
+    | "find"
+    | "findIndex"
   >
 > & {
   readonly map: <U, This = undefined>(
-    callbackfn: (value: T, index: number, array: PrincipledArray<T>) => U,
+    callback: (value: T, index: number, array: PrincipledArray<T>) => U,
     thisArg?: This
   ) => PrincipledArray<U>;
 
@@ -151,6 +161,18 @@ export type PrincipledArray<T> = ImmutableShallow<
       | ((value: T, index: number, array: PrincipledArray<T>) => boolean),
     thisArg?: This
   ) => PrincipledArray<S>;
+
+  readonly find: <S extends T = T, This = undefined>(
+    predicate:
+      | ((value: T, index: number, obj: PrincipledArray<T>) => value is S)
+      | ((value: T, index: number, obj: PrincipledArray<T>) => boolean),
+    thisArg?: This
+  ) => S | undefined;
+
+  readonly findIndex: <This = undefined>(
+    predicate: (value: T, index: number, obj: PrincipledArray<T>) => boolean,
+    thisArg?: This
+  ) => number;
 
   readonly flatMap: <U, This = undefined>(
     callback: (
@@ -172,6 +194,16 @@ export type PrincipledArray<T> = ImmutableShallow<
   ) => PrincipledArray<T>;
 
   readonly slice: (start?: number, end?: number) => PrincipledArray<T>;
+
+  readonly every: <This = undefined>(
+    predicate: (value: T, index: number, array: PrincipledArray<T>) => boolean,
+    thisArg?: This
+  ) => boolean;
+
+  readonly some: <This = undefined>(
+    predicate: (value: T, index: number, array: PrincipledArray<T>) => boolean,
+    thisArg?: This
+  ) => boolean;
 };
 
 /**

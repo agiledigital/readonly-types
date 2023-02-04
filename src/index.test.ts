@@ -68,6 +68,7 @@ describe("ReadonlyURLSearchParams", () => {
     const x = readonlyURLSearchParams("");
     expect(x).toBeDefined();
   });
+
   it("allows iteration using for..of", () => {
     const params = readonlyURLSearchParams({ a: "b" });
 
@@ -83,6 +84,16 @@ describe("ReadonlyURLSearchParams", () => {
     // @ts-expect-error
     params[Symbol.iterator] = null as any;
     /* eslint-enable functional/immutable-data, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/consistent-type-assertions, @typescript-eslint/ban-ts-comment */
+  });
+
+  // eslint-disable-next-line jest/expect-expect
+  it("does not expose forEach", () => {
+    const params = readonlyURLSearchParams({ a: "b" });
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    params.forEach(() => {});
   });
 });
 
@@ -171,14 +182,18 @@ describe("PrincipledArray", () => {
   it("can be mapped", () => {
     const foo = principledArray(["a"]);
 
-    expect(foo.map((s) => s.toUpperCase())).toStrictEqual(["A"]);
+    expect(
+      foo.map((s, _i, _array: PrincipledArray<string>) => s.toUpperCase())
+    ).toStrictEqual(["A"]);
   });
 
   it("can be flatMapped", () => {
     const foo = principledArray(["a"]);
 
     expect(
-      foo.flatMap((s) => principledArray([s.toUpperCase()]))
+      foo.flatMap((s, _i, _array: PrincipledArray<string>) =>
+        principledArray([s.toUpperCase()])
+      )
     ).toStrictEqual(["A"]);
   });
 
@@ -214,7 +229,9 @@ describe("PrincipledArray", () => {
   it("can be filtered with a boolean predicate", () => {
     const foo = principledArray(["a", "b"]);
 
-    expect(foo.filter((s) => s !== "b")).toStrictEqual(["a"]);
+    expect(
+      foo.filter((s, _index, _array: PrincipledArray<string>) => s !== "b")
+    ).toStrictEqual(["a"]);
   });
 
   it("can be filtered with a type guard predicate", () => {
@@ -225,6 +242,32 @@ describe("PrincipledArray", () => {
     const aArray: PrincipledArray<"a"> = foo.filter(isLetterA);
 
     expect(aArray).toStrictEqual(["a"]);
+  });
+
+  it("can use find with a boolean predicate", () => {
+    const foo = principledArray(["a", "b"]);
+
+    expect(
+      foo.find((s, _index, _array: PrincipledArray<string>) => s !== "b")
+    ).toStrictEqual("a");
+  });
+
+  it("can use find with a type guard predicate", () => {
+    const foo = principledArray(["a", "b"]);
+
+    const isLetterA = (s: string): s is "a" => s === "a";
+
+    const result: "a" | undefined = foo.find(isLetterA);
+
+    expect(result).toStrictEqual("a");
+  });
+
+  it("can use findIndex", () => {
+    const foo = principledArray(["a", "b"]);
+
+    expect(
+      foo.findIndex((s, _index, _array: PrincipledArray<string>) => s !== "b")
+    ).toStrictEqual(0);
   });
 
   // eslint-disable-next-line jest/expect-expect
@@ -275,5 +318,25 @@ describe("PrincipledArray", () => {
     const bar = foo.slice(0, 1);
 
     expect(bar).toStrictEqual(["a"]);
+  });
+
+  it("can use every", () => {
+    const foo = principledArray(["a"]);
+
+    const bar = foo.every((s, _index, _array: PrincipledArray<string>) => {
+      return s === "a";
+    });
+
+    expect(bar).toBe(true);
+  });
+
+  it("can use some", () => {
+    const foo = principledArray(["a"]);
+
+    const bar = foo.some((s, _index, _array: PrincipledArray<string>) => {
+      return s === "a";
+    });
+
+    expect(bar).toBe(true);
   });
 });
