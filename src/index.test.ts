@@ -31,10 +31,7 @@ describe("ReadonlyURL", () => {
       throw new Error("url was undefined");
     }
 
-    // eslint-disable-next-line functional/prefer-immutable-types
-    for (const p of url.searchParams) {
-      // eslint-disable-next-line functional/prefer-immutable-types
-      const [k, v] = p;
+    for (const [k, v] of url.searchParams) {
       if (k === "foo") {
         expect(v).toEqual("a");
       } else {
@@ -75,7 +72,6 @@ describe("ReadonlyURLSearchParams", () => {
 
     expect(params[Symbol.iterator]).toBeDefined();
 
-    // eslint-disable-next-line functional/prefer-immutable-types
     for (const [k, v] of params) {
       expect(k).toBe("a");
       expect(v).toBe("b");
@@ -131,7 +127,6 @@ describe("ReadonlyMap", () => {
       [3, "three"],
     ]);
 
-    // eslint-disable-next-line functional/prefer-immutable-types
     for (const [k, v] of map) {
       expect(k).toBeTruthy();
       expect(v).toBeTruthy();
@@ -159,7 +154,6 @@ describe("ReadonlySet", () => {
       [3, "three"],
     ]);
 
-    // eslint-disable-next-line functional/prefer-immutable-types
     for (const [k, v] of set) {
       expect(k).toBeTruthy();
       expect(v).toBeTruthy();
