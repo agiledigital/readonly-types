@@ -19,6 +19,7 @@ import {
   readonlyWeakSet,
   principledArray,
   PrincipledArray,
+  ReadonlyPromise,
 } from ".";
 
 describe("ReadonlyURL", () => {
@@ -175,6 +176,16 @@ describe("ReadonlyWeakSet", () => {
     ]);
 
     expect(set).toBeDefined();
+  });
+});
+
+describe("ReadonlyPromise", () => {
+  // eslint-disable-next-line functional/prefer-immutable-types
+  it("can be awaited", async () => {
+    const p: ReadonlyPromise<string> = Promise.resolve("a");
+    const result = await p;
+    expect(result).toStrictEqual("a");
+    return undefined;
   });
 });
 
@@ -338,5 +349,49 @@ describe("PrincipledArray", () => {
     });
 
     expect(bar).toBe(true);
+  });
+
+  it("can use reduce", () => {
+    const foo = principledArray(["a", "b"]);
+
+    const bar = foo.reduce(
+      (p, c, _index, _array: PrincipledArray<string>) => `${p}${c}`,
+      ""
+    );
+
+    expect(bar).toBe("ab");
+  });
+
+  it("can use reduceRight", () => {
+    const foo = principledArray(["a", "b"]);
+
+    const bar = foo.reduceRight(
+      (p, c, _index, _array: PrincipledArray<string>) => `${p}${c}`,
+      ""
+    );
+
+    expect(bar).toBe("ba");
+  });
+
+  it("cannot use reduce to cause a runtime error with an empty array", () => {
+    const foo = principledArray<string>([]);
+
+    const unsafe = () =>
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      foo.reduce((_p, c, _index, _array: PrincipledArray<string>) => c);
+
+    expect(unsafe).toThrow();
+  });
+
+  it("cannot use reduceRight to cause a runtime error with an empty array", () => {
+    const foo = principledArray<string>([]);
+
+    const unsafe = () =>
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      foo.reduceRight((_p, c, _index, _array: PrincipledArray<string>) => c);
+
+    expect(unsafe).toThrow();
   });
 });

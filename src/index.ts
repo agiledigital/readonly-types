@@ -136,7 +136,6 @@ export type ConcatArray<T> = {
 export type PrincipledArray<T> = ImmutableShallow<
   OmitStrict<
     ImmutableArray<T>,
-    // TODO: reduce, reduceRight
     | "map"
     | "filter"
     | "forEach"
@@ -148,6 +147,8 @@ export type PrincipledArray<T> = ImmutableShallow<
     | "some"
     | "find"
     | "findIndex"
+    | "reduce"
+    | "reduceRight"
   >
 > & {
   readonly map: <U, This = undefined>(
@@ -204,6 +205,26 @@ export type PrincipledArray<T> = ImmutableShallow<
     predicate: (value: T, index: number, array: PrincipledArray<T>) => boolean,
     thisArg?: This
   ) => boolean;
+
+  readonly reduce: <U>(
+    callback: (
+      previousValue: U,
+      currentValue: T,
+      currentIndex: number,
+      array: PrincipledArray<T>
+    ) => U,
+    initialValue: U
+  ) => U;
+
+  readonly reduceRight: <U>(
+    callback: (
+      previousValue: U,
+      currentValue: T,
+      currentIndex: number,
+      array: PrincipledArray<T>
+    ) => U,
+    initialValue: U
+  ) => U;
 };
 
 /**
