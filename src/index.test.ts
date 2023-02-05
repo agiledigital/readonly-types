@@ -20,6 +20,7 @@ import {
   principledArray,
   PrincipledArray,
   ReadonlyPromise,
+  principledNonEmptyArray,
 } from ".";
 
 describe("ReadonlyURL", () => {
@@ -387,5 +388,27 @@ describe("PrincipledArray", () => {
       foo.reduceRight((_p, c, _index, _array: PrincipledArray<string>) => c);
 
     expect(unsafe).toThrow();
+  });
+
+  it("can use reduce without an initialValue if verifiably nonempty", () => {
+    const foo = principledNonEmptyArray<string>(["a"]);
+
+    const head: string = foo[0];
+    expect(head).toStrictEqual("a");
+
+    expect(
+      foo.reduce((_p, c, _index, _array: PrincipledArray<string>) => c)
+    ).toStrictEqual("a");
+  });
+
+  it("can use reduceRight without an initialValue if verifiably nonempty", () => {
+    const foo = principledNonEmptyArray<string>(["a"]);
+
+    const head: string = foo[0];
+    expect(head).toStrictEqual("a");
+
+    expect(
+      foo.reduceRight((_p, c, _index, _array: PrincipledArray<string>) => c)
+    ).toStrictEqual("a");
   });
 });

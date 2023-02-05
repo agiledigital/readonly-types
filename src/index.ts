@@ -65,6 +65,10 @@ export type ImmutableShallow<T extends {}> = {
 // https://github.com/agiledigital/readonly-types/issues/518
 export type ImmutableArray<T> = ImmutableShallow<ReadonlyArray<T>>;
 
+export type NonEmptyImmutableArray<T> = ImmutableShallow<
+  readonly [T, ...(readonly T[])]
+>;
+
 export type ReadonlyPromise<T> = Readonly<Promise<T>>;
 
 /**
@@ -228,6 +232,38 @@ export type PrincipledArray<T> = ImmutableShallow<
 };
 
 /**
+ * Mixes `NonEmptyImmutableArray<T>` into our standard PrincipledArray<T> to
+ * prove to the compiler that it has a head element. This allows us to make
+ * `initialValue` optional in `reduce` and `reduceRight` without risk of runtime errors.
+ */
+export type PrincipledNonEmptyArray<T> = ImmutableShallow<
+  OmitStrict<
+    NonEmptyImmutableArray<T> & PrincipledArray<T>,
+    "reduce" | "reduceRight"
+  >
+> & {
+  readonly reduce: <U>(
+    callback: (
+      previousValue: U,
+      currentValue: T,
+      currentIndex: number,
+      array: PrincipledArray<T>
+    ) => U,
+    initialValue?: U | undefined
+  ) => U;
+
+  readonly reduceRight: <U>(
+    callback: (
+      previousValue: U,
+      currentValue: T,
+      currentIndex: number,
+      array: PrincipledArray<T>
+    ) => U,
+    initialValue?: U | undefined
+  ) => U;
+};
+
+/**
  * Copies the provided immutable array and returns the result as a principled array.
  */
 export const principledArray = <T>(
@@ -235,6 +271,13 @@ export const principledArray = <T>(
 ): PrincipledArray<T> => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   return [...immutableArray] as PrincipledArray<T>;
+};
+
+export const principledNonEmptyArray = <T>(
+  immutableArray: NonEmptyImmutableArray<T>
+): PrincipledNonEmptyArray<T> => {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  return [...immutableArray] as unknown as PrincipledNonEmptyArray<T>;
 };
 
 // Methods are technically mutable in TypeScript. There is no way to use method syntax and retain immutability. (OO strikes again)
