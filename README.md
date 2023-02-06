@@ -93,6 +93,115 @@ You can ban the mutable counterparts to these readonly types using [ESLint](http
 
 These lint rules are configured by [eslint-config-typed-fp](https://github.com/danielnixon/eslint-config-typed-fp) for you.
 
+## `ImmutableArray` and `PrincipledArray`
+
+TypeScript's built-in `ReadonlyArray` isn't truly immutable. Observe:
+
+```typescript
+const foo: ReadonlyArray<string> = [""] as const;
+
+// This compiles
+foo.every = () => false;
+// So does this
+foo.at = () => undefined;
+```
+
+is-immutable-type provides the answer in [Making ReadonlyDeep types Immutable](https://github.com/RebeccaStevens/is-immutable-type#making-readonlydeep-types-immutable). We've reused that here to provide an `ImmutableArray` type.
+
+```typescript
+import { ImmutableArray } from "readonly-types";
+
+const foo: ImmutableArray<string> = [""] as const;
+
+// These no longer compile
+foo.every = () => false; // Cannot assign to 'every' because it is a read-only property. ts(2540)
+foo.at = () => undefined; // Cannot assign to 'at' because it is a read-only property. ts(2540)
+```
+
+`ReadonlyArray` achieves the `ReadonlyDeep` level of immutability, `ImmutableArray` achieves the `Immutable` level.
+
+It turns out that even `ImmutableArray` has cracks in its immutable armour. Here's a subtle one:
+
+```typescript
+// This doesn't compile...
+foo.at = () => undefined;
+
+foo.map((value, index, array) => {
+  // ... but this does!
+  array.at = () => undefined;
+
+  return value;
+});
+```
+
+The `array` passed as the third argument to the `map` callback is typed as `ReadonlyArray`. Our `ImmutableArray` trick doesn't change that method's callback's argument's types. The same applies to `filter`, `flatMap`, `find` and so on.
+
+To fix that issue we provide a type called `PrincipledArray`:
+
+```typescript
+const foo: PrincipledArray<string> = [""] as const;
+
+// This doesn't compile...
+foo.at = () => undefined;
+
+foo.map((value, index, array) => {
+  // ... and neither does this!
+  array.at = () => undefined;
+
+  return value;
+});
+```
+
+`PrincipledArray` makes a few other (type-incompatible) improvements while its at it, including:
+
+* Removes `forEach` entirely (use `map` or another non-side-effecting alternative instead).
+* Requires a true boolean return type from predicates passed to `filter` and other methods (by default, TypeScript allows these predicates to return `unknown`).
+* Removes the partial versions of `reduce` and `reduceRight` that throw at runtime if the array is empty (i.e. those that don't require the caller to specify an initial value).
+
+```typescript
+import { principledArray } from "readonly-types";
+
+// Given a principled array.
+const foo = principledArray<string>([]);
+
+// This does not compile.
+// Property 'forEach' does not exist on type 'PrincipledArray<string>'. ts(2339)
+foo.forEach(() => {});
+
+// This would normally throw at runtime, but with PrincipledArray it does not compile
+// Expected 2 arguments, but got 1. ts(2554)
+// An argument for 'initialValue' was not provided.
+const result = foo.reduce((p) => p);
+```
+
+The downside to `PrincipledArray` is that -- precisely because it changes the type in these ways -- you cannot assign it to a value of type `ReadonlyArray`. `ImmutableArray` doesn't have this downside. Choose whichever is most appropriate for you.
+
+## `ImmutableNonEmptyArray` and `PrincipledNonEmptyArray`
+
+An array type that is verifiably non-empty (i.e. known to have at least one entry at compile time) is a useful type to have.
+
+You can make such a type based on `ReadonlyArray` like this:
+
+```typescript
+type ReadonlyNonEmptyArray<T> = readonly [T, ...(readonly T[])];
+```
+
+Like `ReadonlyArray` that type is only `ReadonlyDeep`, not truly `Immutable`.
+
+We provide a truly immutable version in the form of `ImmutableNonEmptyArray`.
+
+With `PrincipledArray` having removed the versions of `reduce` and `reduceRight` that do not require an `initialValue`, there becomes a need for another type that is verifiably non-empty (at compile time) which puts them back again.
+
+We provide that type in the form of `PrincipledNonEmptyArray`, which you can think of as a mix between `ImmutableNonEmptyArray` and `PrincipledArray`:
+
+```typescript
+// Given a principled non-empty array.
+const foo = principledNonEmptyArray<string>(["a"]);
+
+// This compiles, whereas it wouldn't have compiled for a regular principled array.
+const result = foo.reduce((p) => p);
+```
+
 ## Purpose-built immutable data structures
 
 Types like `ImmutableArray` and `PrincipledArray` (and even the humble built-in `ReadonlyArray`) can help a lot with correctness but the underlying runtime type remains a mutable `Array`. The same goes for our immutable `Set` and `Map` types. In essence the data structures are the same, we're just constraining ourselves to an immutable subset of their mutable APIs.
@@ -134,6 +243,8 @@ const foo: TrulyImmutableMap<string, string> = ImmutableJsMap([
 // No longer compiles
 foo.delete = () => foo; // Cannot assign to 'delete' because it is a read-only property. ts(2540)
 ```
+
+See [Making ReadonlyDeep types Immutable](https://github.com/RebeccaStevens/is-immutable-type#making-readonlydeep-types-immutable) for more on this.
 
 ## See Also
 * https://github.com/danielnixon/eslint-config-typed-fp
