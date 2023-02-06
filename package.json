@@ -1,6 +1,6 @@
 {
   "name": "readonly-types",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "A collection of readonly TypeScript types inspired by the built-in ReadonlyArray, ReadonlyMap, etc.",
   "main": "dist",
   "repository": "https://github.com/agiledigital/readonly-types.git",
