@@ -214,7 +214,7 @@ const result = foo.reduce((p) => p);
 | `PrincipledArray`         | ❌     | ❌                | ❌                | ✅                | ❌ |
 | `PrincipledNonEmptyArray` | ❌     | ❌                | ❌                | ✅                | ✅ |
 
-Assignments marked ⚠️ can lead to surprising mutation in whichever side of the assignment has "less" immutability. [eslint-plugin-total-functions](https://github.com/danielnixon/eslint-plugin-total-functions/) includes an ESLint rule to flag these unsafe assignments.
+Assignments marked ⚠️ can lead to surprising mutation in whichever side of the assignment appears to have "more" immutability, via mutations made to the side that has "less". [eslint-plugin-total-functions](https://github.com/danielnixon/eslint-plugin-total-functions/) includes an ESLint rule to flag these unsafe assignments.
 
 ## Purpose-built immutable data structures
 
