@@ -51,7 +51,7 @@ The first column ("Even Better 🚀") contains types that are more than just imm
 | purpose-built immutable data structures | `ImmutableMap` | `ReadonlyMap`, immutable-js's `Map` | | `Map` |
 | | `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
 | | `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
-| | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
+| [fp-ts's `Either`](https://gcanti.github.io/fp-ts/modules/Either.ts.html) | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
 | | `ReadonlyRegExp` | | | `RegExp` |
 | [fp-ts's `TaskEither`](https://gcanti.github.io/fp-ts/modules/TaskEither.ts.html), and eventually [Effect](https://www.effect.website/docs/what-is-effect) | `ReadonlyPromise` | `Promise` | | |
 | | `DeepImmutable` | | | [`DeepReadonly` from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181), which when used will produce a mix of `Mutable` and `ReadonlyDeep` types |
