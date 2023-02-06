@@ -249,4 +249,5 @@ See [Making ReadonlyDeep types Immutable](https://github.com/RebeccaStevens/is-i
 ## See Also
 * https://github.com/danielnixon/eslint-config-typed-fp
 * https://github.com/jonaskello/eslint-plugin-functional
+* https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#readonly-and-const
 * To see ReadonlyDate adoption grow, upvote this: https://github.com/date-fns/date-fns/issues/1944
