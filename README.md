@@ -118,7 +118,7 @@ const foo = ImmutableJsMap([["key", "value"]]);
 foo.delete = () => foo;
 ```
 
-Because `delete` is implemented using method syntax it is necessarily mutable (TypeScript method defined using method syntax cannot be readonly for "reasons"). This is so common that [is-immutable-type#definitions](https://github.com/RebeccaStevens/is-immutable-type#definitions) defines a level of "readonly-ness" called `ReadonlyDeep` that sits below truly `Immutable` but above the mutable levels (`ReadonlyShallow`, `Mutable`).
+Because `delete` is implemented using method syntax it is necessarily mutable (TypeScript methods defined using method syntax cannot be readonly for "reasons"). This is so common that [is-immutable-type#definitions](https://github.com/RebeccaStevens/is-immutable-type#definitions) defines a level of "readonly-ness" called `ReadonlyDeep` that sits below truly `Immutable` but above the mutable levels `ReadonlyShallow` and `Mutable`.
 
 Depending on how strictly you wish to enforce immutability, `ReadonlyDeep` may or may not be acceptable to you. If it isn't, you can fix it like this:
 
