@@ -204,12 +204,13 @@ const result = foo.reduce((p) => p);
 
 ## Array type compatibility
 
-| ⬇️ can be assigned to ➡️ | `Array` | `ReadonlyArray` | `ImmutableArray` | `PrincipledArray` |
-|-------------------|---|---|---|---|
-| `Array`           | ✅ | ✅ | ✅ | ❌ |
-| `ReadonlyArray`   | ❌ | ✅ | ✅ | ❌ |
-| `ImmutableArray`  | ❌ | ✅ | ✅ | ❌ |
-| `PrincipledArray` | ❌ | ❌ | ❌ | ✅ |
+| ⬇️ can be assigned to ➡️ | `Array` | `ReadonlyArray` | `ImmutableArray` | `PrincipledArray` | `PrincipledNonEmptyArray` |
+|---------------------------|----|----|----|-----|----|
+| `Array`                   | ✅ | ✅ | ✅ | ❌ | ❌ |
+| `ReadonlyArray`           | ❌ | ✅ | ✅ | ❌ | ❌ |
+| `ImmutableArray`          | ❌ | ✅ | ✅ | ❌ | ❌ |
+| `PrincipledArray`         | ❌ | ❌ | ❌ | ✅ | ❌ |
+| `PrincipledNonEmptyArray` | ❌ | ❌ | ❌ | ✅ | ✅ |
 
 ## Purpose-built immutable data structures
 
