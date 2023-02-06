@@ -214,7 +214,7 @@ const result = foo.reduce((p) => p);
 | `PrincipledArray`         | ❌     | ❌                | ❌                | ✅                | ❌ |
 | `PrincipledNonEmptyArray` | ❌     | ❌                | ❌                | ✅                | ✅ |
 
-Assignments marked ⚠️ can lead to surprising mutation in whichever side of the assignment appears to have "more" immutability, via mutations made to the side that has "less". [eslint-plugin-total-functions](https://github.com/danielnixon/eslint-plugin-total-functions/) includes an ESLint rule to flag these unsafe assignments.
+Assignments marked ⚠️ can lead to surprising mutation in whichever side of the assignment appears to have "more" immutability, via mutations made to the side that has "less". [eslint-plugin-total-functions](https://github.com/danielnixon/eslint-plugin-total-functions/) includes an ESLint rule to flag these unsafe assignments. See https://github.com/Microsoft/TypeScript/issues/13347 for more.
 
 ## Purpose-built immutable data structures
 
@@ -266,3 +266,4 @@ See [Making ReadonlyDeep types Immutable](https://github.com/RebeccaStevens/is-i
 * https://github.com/danielnixon/eslint-plugin-total-functions
 * https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#readonly-and-const
 * To see ReadonlyDate adoption grow, upvote this: https://github.com/date-fns/date-fns/issues/1944
+* https://github.com/Microsoft/TypeScript/issues/13347
