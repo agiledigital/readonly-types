@@ -13,23 +13,13 @@ export type DeepImmutable<T> = T extends Date
   ? ReadonlyURL
   : T extends URLSearchParams
   ? ReadonlyURLSearchParams
-  : // eslint-disable-next-line functional/prefer-readonly-type
-  T extends Map<infer K, infer V>
-  ? ImmutableMap<DeepImmutable<K>, DeepImmutable<V>>
-  : T extends ReadonlyMap<infer K, infer V>
-  ? ImmutableMap<DeepImmutable<K>, DeepImmutable<V>>
-  : T extends ImmutableMap<infer K, infer V>
+  : T extends AnyMap<infer K, infer V>
   ? ImmutableMap<DeepImmutable<K>, DeepImmutable<V>>
   : T extends WeakMap<infer K, infer V>
   ? ReadonlyWeakMap<DeepImmutable<K>, DeepImmutable<V>>
   : T extends ReadonlyWeakMap<infer K, infer V>
   ? ReadonlyWeakMap<DeepImmutable<K>, DeepImmutable<V>>
-  : // eslint-disable-next-line functional/prefer-readonly-type
-  T extends Set<infer U>
-  ? ImmutableSet<DeepImmutable<U>>
-  : T extends ReadonlySet<infer U>
-  ? ImmutableSet<DeepImmutable<U>>
-  : T extends ImmutableSet<infer U>
+  : T extends AnySet<infer U>
   ? ImmutableSet<DeepImmutable<U>>
   : T extends WeakSet<infer U>
   ? ReadonlyWeakSet<DeepImmutable<U>>
@@ -65,7 +55,7 @@ export type ImmutableShallow<T extends {}> = {
 // https://github.com/agiledigital/readonly-types/issues/518
 export type ImmutableArray<T> = ImmutableShallow<ReadonlyArray<T>>;
 
-export type NonEmptyImmutableArray<T> = ImmutableShallow<
+export type ImmutableNonEmptyArray<T> = ImmutableShallow<
   readonly [T, ...(readonly T[])]
 >;
 
@@ -80,6 +70,12 @@ export type AnyArray<T> =
   | ReadonlyArray<T>
   // eslint-disable-next-line functional/prefer-readonly-type
   | Array<T>;
+
+// eslint-disable-next-line functional/prefer-readonly-type
+export type AnyMap<K, V> = Map<K, V> | ReadonlyMap<K, V> | ImmutableMap<K, V>;
+
+// eslint-disable-next-line functional/prefer-readonly-type, functional/type-declaration-immutability
+export type AnySet<T> = Set<T> | ReadonlySet<T> | ImmutableSet<T>;
 
 /**
  * Recursive machinery to implement PrincipledArray's flat method. Copied from TypeScript standard lib
@@ -210,7 +206,7 @@ export type PrincipledArray<T> = ImmutableShallow<
     thisArg?: This
   ) => boolean;
 
-  readonly reduce: <U>(
+  readonly reduce: <U = T>(
     callback: (
       previousValue: U,
       currentValue: T,
@@ -220,7 +216,7 @@ export type PrincipledArray<T> = ImmutableShallow<
     initialValue: U
   ) => U;
 
-  readonly reduceRight: <U>(
+  readonly reduceRight: <U = T>(
     callback: (
       previousValue: U,
       currentValue: T,
@@ -238,26 +234,26 @@ export type PrincipledArray<T> = ImmutableShallow<
  */
 export type PrincipledNonEmptyArray<T> = ImmutableShallow<
   OmitStrict<
-    NonEmptyImmutableArray<T> & PrincipledArray<T>,
+    ImmutableNonEmptyArray<T> & PrincipledArray<T>,
     "reduce" | "reduceRight"
   >
 > & {
-  readonly reduce: <U>(
+  readonly reduce: <U = T>(
     callback: (
       previousValue: U,
       currentValue: T,
       currentIndex: number,
-      array: PrincipledArray<T>
+      array: PrincipledNonEmptyArray<T>
     ) => U,
     initialValue?: U | undefined
   ) => U;
 
-  readonly reduceRight: <U>(
+  readonly reduceRight: <U = T>(
     callback: (
       previousValue: U,
       currentValue: T,
       currentIndex: number,
-      array: PrincipledArray<T>
+      array: PrincipledNonEmptyArray<T>
     ) => U,
     initialValue?: U | undefined
   ) => U;
@@ -274,7 +270,7 @@ export const principledArray = <T>(
 };
 
 export const principledNonEmptyArray = <T>(
-  immutableArray: NonEmptyImmutableArray<T>
+  immutableArray: ImmutableNonEmptyArray<T>
 ): PrincipledNonEmptyArray<T> => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   return [...immutableArray] as unknown as PrincipledNonEmptyArray<T>;
