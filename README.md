@@ -11,6 +11,8 @@ A collection of readonly TypeScript types inspired by TypeScript's built-in read
 
 The types here are all fully `Immutable` following [is-immutable-type#definitions](https://github.com/RebeccaStevens/is-immutable-type#definitions).
 
+This package assumes you have TypeScript's [strict mode](https://www.typescriptlang.org/tsconfig#strict) and [noUncheckedIndexedAccess](https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess) option turned on. [eslint-plugin-total-functions](https://github.com/danielnixon/eslint-plugin-total-functions/) provides an ESLint rule to ensure they're both on.
+
 ## Installation
 
 ```sh
@@ -212,7 +214,7 @@ const result = foo.reduce((p) => p);
 | `PrincipledArray`         | ❌     | ❌                | ❌                | ✅                | ❌ |
 | `PrincipledNonEmptyArray` | ❌     | ❌                | ❌                | ✅                | ✅ |
 
-Assignments marked ⚠️ can lead to surprising mutation in whichever side of the assignment has "less" immutability. https://github.com/danielnixon/eslint-plugin-total-functions includes an ESLint rule to flag these unsafe assignments.
+Assignments marked ⚠️ can lead to surprising mutation in whichever side of the assignment has "less" immutability. [eslint-plugin-total-functions](https://github.com/danielnixon/eslint-plugin-total-functions/) includes an ESLint rule to flag these unsafe assignments.
 
 ## Purpose-built immutable data structures
 
