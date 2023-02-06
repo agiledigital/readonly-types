@@ -46,14 +46,14 @@ The first column ("Even Better 🚀") contains types that are more than just imm
 | | `ReadonlyURL` | | | [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) | 
 | | `ReadonlyURLSearchParams` | | | [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) |
 | [Temporal](https://tc39.es/proposal-temporal/) (stage 3 proposal, aims to solve various problems in `Date`, including its mutability) | `ReadonlyDate` | | | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
-| [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`) | `ImmutableArray` | `ReadonlyArray`, [immutable-js](https://github.com/immutable-js/immutable-js/)'s `List` | | `Array` |
-| | `ImmutableSet` | `ReadonlySet`, immutable-js's `Set` | | `Set` |
-| | `ImmutableMap` | `ReadonlyMap`, immutable-js's `Map` | | `Map` |
+| [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`), purpose-built immutable data structures | `ImmutableArray` | `ReadonlyArray`, [immutable-js](https://github.com/immutable-js/immutable-js/)'s `List` | | `Array` |
+| purpose-built immutable data structures | `ImmutableSet` | `ReadonlySet`, immutable-js's `Set` | | `Set` |
+| purpose-built immutable data structures | `ImmutableMap` | `ReadonlyMap`, immutable-js's `Map` | | `Map` |
 | | `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
 | | `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
 | | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
 | | `ReadonlyRegExp` | | | `RegExp` |
-| [fp-ts's `TaskEither`](https://gcanti.github.io/fp-ts/modules/TaskEither.ts.html) | `ReadonlyPromise` | `Promise` | | |
+| [fp-ts's `TaskEither`](https://gcanti.github.io/fp-ts/modules/TaskEither.ts.html), and eventually [Effect](https://www.effect.website/docs/what-is-effect) | `ReadonlyPromise` | `Promise` | | |
 | | `DeepImmutable` | | | [`DeepReadonly` from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181), which when used will produce a mix of `Mutable` and `ReadonlyDeep` types |
 * PRs welcome!
 
