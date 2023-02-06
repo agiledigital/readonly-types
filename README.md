@@ -202,6 +202,15 @@ const foo = principledNonEmptyArray<string>(["a"]);
 const result = foo.reduce((p) => p);
 ```
 
+## Array type compatibility
+
+| ⬇️ can be assigned to ➡️ | `Array` | `ReadonlyArray` | `ImmutableArray` | `PrincipledArray` |
+|-------------------|---|---|---|---|
+| `Array`           | ✅ | ✅ | ✅ | ❌ |
+| `ReadonlyArray`   | ❌ | ✅ | ✅ | ❌ |
+| `ImmutableArray`  | ❌ | ✅ | ✅ | ❌ |
+| `PrincipledArray` | ❌ | ❌ | ❌ | ✅ |
+
 ## Purpose-built immutable data structures
 
 Types like `ImmutableArray` and `PrincipledArray` (and even the humble built-in `ReadonlyArray`) can help a lot with correctness but the underlying runtime type remains a mutable `Array`. The same goes for our immutable `Set` and `Map` types. In essence the data structures are the same, we're just constraining ourselves to an immutable subset of their mutable APIs.
