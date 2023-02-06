@@ -109,6 +109,32 @@ To get you started, check out the following:
 * https://github.com/immutable-js/immutable-js
 * https://github.com/rtfeldman/seamless-immutable
 
+A surprising irony of these types is that they typically aren't truly immutable, for the same reason that `ReadonlyArray` isn't truly immutable. Here's an example:
+
+```typescript
+import { Map as ImmutableJsMap } from "immutable";
+const foo = ImmutableJsMap([["key", "value"]]);
+// This compiles
+foo.delete = () => foo;
+```
+
+Because `delete` is implemented using method syntax it is necessarily mutable (TypeScript method defined using method syntax cannot be readonly for "reasons"). This is so common that [is-immutable-type#definitions](https://github.com/RebeccaStevens/is-immutable-type#definitions) defines a level of "readonly-ness" called `ReadonlyDeep` that sits below truly `Immutable` but above the mutable levels (`ReadonlyShallow`, `Mutable`).
+
+Depending on how strictly you wish to enforce immutability, `ReadonlyDeep` may or may not be acceptable to you. If it isn't, you can fix it like this:
+
+```typescript
+import { Map as ImmutableJsMap } from "immutable";
+
+type TrulyImmutableMap<K, V> = Readonly<ImmutableJsMap<K, V>>;
+
+const foo: TrulyImmutableMap<string, string> = ImmutableJsMap([
+  ["key", "value"],
+]);
+
+// No longer compiles
+foo.delete = () => foo; // Cannot assign to 'delete' because it is a read-only property. ts(2540)
+```
+
 ## See Also
 * https://github.com/danielnixon/eslint-config-typed-fp
 * https://github.com/jonaskello/eslint-plugin-functional
