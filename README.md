@@ -93,11 +93,23 @@ You can ban the mutable counterparts to these readonly types using [ESLint](http
 
 These lint rules are configured by [eslint-config-typed-fp](https://github.com/danielnixon/eslint-config-typed-fp) for you.
 
+## Purpose-built immutable data structures
+
+Types like `ImmutableArray` and `PrincipledArray` (and even the humble built-in `ReadonlyArray`) can help a lot with correctness but the underlying runtime type remains a mutable `Array`. The same goes for our immutable `Set` and `Map` types. In essence the data structures are the same, we're just constraining ourselves to an immutable subset of their mutable APIs.
+
+One consequence of this is that if someone could get their hands on a mutable handle to one of our values, they could edit it as if it were mutable (e.g. via an `as` type assertion or via an `Array.isArray` check). This forces us to put a little asterisk next to any immutability guarantees we make. You might reach for [Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) in response to that risk, but that comes with its own issues (performance, compatibility, doesn't show up in the type system, ...).
+
+Another consequence of this is that updating and copying values of these types is needlessly expensive (in terms of compute and memory). A copy of the _entire_ structure must be taken to preserve correctness, even if all we want to do for example is update a single element.
+
+There exist purpose-built immutable data structures that give us an immutable API without the associated performance cost of copying an underlying mutable structure (look for terms like 'structural sharing' and 'copy on write'). If performance is a factor for you, these can be a better choice than the immutable types provided by this package.
+
+To get you started, check out the following:
+
+* https://github.com/immerjs/immer
+* https://github.com/immutable-js/immutable-js
+* https://github.com/rtfeldman/seamless-immutable
+
 ## See Also
 * https://github.com/danielnixon/eslint-config-typed-fp
-* Purpose built immutable types
-  * https://github.com/immerjs/immer
-  * https://github.com/immutable-js/immutable-js
-  * https://github.com/rtfeldman/seamless-immutable
 * https://github.com/jonaskello/eslint-plugin-functional
 * To see ReadonlyDate adoption grow, upvote this: https://github.com/date-fns/date-fns/issues/1944
