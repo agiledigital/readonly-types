@@ -204,13 +204,15 @@ const result = foo.reduce((p) => p);
 
 ## Array type compatibility
 
-| ⬇️ can be assigned to ➡️ | `Array` | `ReadonlyArray` | `ImmutableArray` | `PrincipledArray` | `PrincipledNonEmptyArray` |
-|---------------------------|----|----|----|-----|----|
-| `Array`                   | ✅ | ✅ | ✅ | ❌ | ❌ |
-| `ReadonlyArray`           | ❌ | ✅ | ✅ | ❌ | ❌ |
-| `ImmutableArray`          | ❌ | ✅ | ✅ | ❌ | ❌ |
-| `PrincipledArray`         | ❌ | ❌ | ❌ | ✅ | ❌ |
-| `PrincipledNonEmptyArray` | ❌ | ❌ | ❌ | ✅ | ✅ |
+| ⬇️ can be assigned to ➡️ | `Array` | `ReadonlyArray`   | `ImmutableArray`  | `PrincipledArray` | `PrincipledNonEmptyArray` |
+|---------------------------|--------|-------------------|-------------------|-------------------|---------------------------|
+| `Array`                   | ✅     | ✅ ⚠️             | ✅ ⚠️             | ❌                | ❌ |
+| `ReadonlyArray`           | ❌     | ✅                | ✅ ⚠️             | ❌                | ❌ |
+| `ImmutableArray`          | ❌     | ✅ ⚠️             | ✅                | ❌                | ❌ |
+| `PrincipledArray`         | ❌     | ❌                | ❌                | ✅                | ❌ |
+| `PrincipledNonEmptyArray` | ❌     | ❌                | ❌                | ✅                | ✅ |
+
+Assignments marked ⚠️ can lead to surprising mutation in whichever side of the assignment has "less" immutability. https://github.com/danielnixon/eslint-plugin-total-functions includes an ESLint rule to flag these unsafe assignments.
 
 ## Purpose-built immutable data structures
 
@@ -259,5 +261,6 @@ See [Making ReadonlyDeep types Immutable](https://github.com/RebeccaStevens/is-i
 ## See Also
 * https://github.com/danielnixon/eslint-config-typed-fp
 * https://github.com/jonaskello/eslint-plugin-functional
+* https://github.com/danielnixon/eslint-plugin-total-functions
 * https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#readonly-and-const
 * To see ReadonlyDate adoption grow, upvote this: https://github.com/date-fns/date-fns/issues/1944
