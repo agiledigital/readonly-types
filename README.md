@@ -48,9 +48,9 @@ The first column ("Even Better 🚀") contains types that are more than just imm
 | | `ReadonlyURL` | | | [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) | 
 | | `ReadonlyURLSearchParams` | | | [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) |
 | [Temporal](https://tc39.es/proposal-temporal/) (stage 3 proposal, aims to solve various problems in `Date`, including its mutability) | `ReadonlyDate` | | | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
-| [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`), purpose-built immutable data structures | `ImmutableArray` | `ReadonlyArray`, [immutable-js](https://github.com/immutable-js/immutable-js/)'s `List` | | `Array` |
-| purpose-built immutable data structures | `ImmutableSet` | `ReadonlySet`, immutable-js's `Set` | | `Set` |
-| purpose-built immutable data structures | `ImmutableMap` | `ReadonlyMap`, immutable-js's `Map` | | `Map` |
+| [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`), purpose-built immutable data structures | `ImmutableArray` | `ReadonlyArray` | | `Array` |
+| purpose-built immutable data structures | `ImmutableSet` | `ReadonlySet` | | `Set` |
+| purpose-built immutable data structures | `ImmutableMap` | `ReadonlyMap` | | `Map` |
 | | `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
 | | `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
 | [fp-ts's `Either`](https://gcanti.github.io/fp-ts/modules/Either.ts.html) | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
