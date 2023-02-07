@@ -1,9 +1,4 @@
 /* eslint-disable functional/no-return-void */
-/* eslint-disable sonarjs/no-duplicate-string */
-/* eslint-disable jest/no-conditional-expect */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable functional/no-conditional-statements */
-/* eslint-disable functional/no-loop-statements */
 /* eslint-disable functional/functional-parameters */
 /* eslint-disable functional/no-expression-statements */
 
@@ -21,22 +16,29 @@ import {
   PrincipledArray,
   ReadonlyPromise,
   principledNonEmptyArray,
+  PrincipledNonEmptyArray,
 } from ".";
 
 describe("ReadonlyURL", () => {
   it("iterates through URL search params using for..of", () => {
     const url = readonlyURL("http://example.com?foo=a&bar=b");
 
+    // eslint-disable-next-line functional/no-conditional-statements
     if (url === undefined) {
       // eslint-disable-next-line functional/no-throw-statements
       throw new Error("url was undefined");
     }
 
+    // eslint-disable-next-line functional/no-loop-statements
     for (const [k, v] of url.searchParams) {
+      // eslint-disable-next-line functional/no-conditional-statements
       if (k === "foo") {
+        // eslint-disable-next-line jest/no-conditional-expect
         expect(v).toEqual("a");
       } else {
+        // eslint-disable-next-line jest/no-conditional-expect
         expect(k).toEqual("bar");
+        // eslint-disable-next-line jest/no-conditional-expect
         expect(v).toEqual("b");
       }
     }
@@ -51,6 +53,7 @@ describe("ReadonlyURL", () => {
     const url = readonlyURL("http://example.com");
     expect(url).toBeDefined();
 
+    // eslint-disable-next-line functional/no-conditional-statements
     if (url === undefined) {
       // eslint-disable-next-line functional/no-throw-statements
       throw new Error("url was undefined");
@@ -58,21 +61,25 @@ describe("ReadonlyURL", () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     url.searchParams.append("", "");
   });
 });
 
 describe("ReadonlyURLSearchParams", () => {
+  // eslint-disable-next-line sonarjs/no-duplicate-string
   it("doesn't throw", () => {
     const x = readonlyURLSearchParams("");
     expect(x).toBeDefined();
   });
 
+  // eslint-disable-next-line sonarjs/no-duplicate-string
   it("allows iteration using for..of", () => {
     const params = readonlyURLSearchParams({ a: "b" });
 
     expect(params[Symbol.iterator]).toBeDefined();
 
+    // eslint-disable-next-line functional/no-loop-statements
     for (const [k, v] of params) {
       expect(k).toBe("a");
       expect(v).toBe("b");
@@ -90,7 +97,7 @@ describe("ReadonlyURLSearchParams", () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unsafe-call
     params.forEach(() => {});
   });
 });
@@ -128,6 +135,7 @@ describe("ReadonlyMap", () => {
       [3, "three"],
     ]);
 
+    // eslint-disable-next-line functional/no-loop-statements
     for (const [k, v] of map) {
       expect(k).toBeTruthy();
       expect(v).toBeTruthy();
@@ -155,6 +163,7 @@ describe("ReadonlySet", () => {
       [3, "three"],
     ]);
 
+    // eslint-disable-next-line functional/no-loop-statements
     for (const [k, v] of set) {
       expect(k).toBeTruthy();
       expect(v).toBeTruthy();
@@ -282,7 +291,7 @@ describe("PrincipledArray", () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unsafe-call
     foo.forEach(() => {});
   });
 
@@ -408,7 +417,9 @@ describe("PrincipledArray", () => {
     expect(head).toStrictEqual("a");
 
     expect(
-      foo.reduceRight((_p, c, _index, _array: PrincipledArray<string>) => c)
+      foo.reduceRight(
+        (_p, c, _index, _array: PrincipledNonEmptyArray<string>) => c
+      )
     ).toStrictEqual("a");
   });
 });

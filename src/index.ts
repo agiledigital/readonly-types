@@ -237,27 +237,17 @@ export type PrincipledNonEmptyArray<T> = ImmutableShallow<
     ImmutableNonEmptyArray<T> & PrincipledArray<T>,
     "reduce" | "reduceRight"
   >
-> & {
-  readonly reduce: <U = T>(
-    callback: (
-      previousValue: U,
-      currentValue: T,
-      currentIndex: number,
-      array: PrincipledNonEmptyArray<T>
-    ) => U,
-    initialValue?: U | undefined
-  ) => U;
-
-  readonly reduceRight: <U = T>(
-    callback: (
-      previousValue: U,
-      currentValue: T,
-      currentIndex: number,
-      array: PrincipledNonEmptyArray<T>
-    ) => U,
-    initialValue?: U | undefined
-  ) => U;
-};
+> &
+  Readonly<{
+    /* eslint-disable @typescript-eslint/method-signature-style, prettier/prettier, @typescript-eslint/unified-signatures */
+    reduce(callback: (previousValue: T, currentValue: T, currentIndex: number, array: PrincipledNonEmptyArray<T>) => T): T;
+    reduce(callback: (previousValue: T, currentValue: T, currentIndex: number, array: PrincipledNonEmptyArray<T>) => T, initialValue: T): T;
+    reduce<U>(callback: (previousValue: U, currentValue: T, currentIndex: number, array: PrincipledNonEmptyArray<T>) => U, initialValue: U): U;
+    reduceRight(callback: (previousValue: T, currentValue: T, currentIndex: number, array: PrincipledNonEmptyArray<T>) => T): T;
+    reduceRight(callback: (previousValue: T, currentValue: T, currentIndex: number, array: PrincipledNonEmptyArray<T>) => T, initialValue: T): T;
+    reduceRight<U>(callback: (previousValue: U, currentValue: T, currentIndex: number, array: PrincipledNonEmptyArray<T>) => U, initialValue: U): U;
+    /* eslint-enable @typescript-eslint/method-signature-style, prettier/prettier, @typescript-eslint/unified-signatures */
+  }>;
 
 /**
  * Copies the provided immutable array and returns the result as a principled array.
