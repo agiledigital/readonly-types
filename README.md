@@ -158,7 +158,7 @@ foo.map((value, index, array) => {
 
 * Removes `forEach` entirely (use `map` or another non-side-effecting alternative instead).
 * Requires a true boolean return type from predicates passed to `filter` and other methods (by default, TypeScript allows these predicates to return `unknown`).
-* Removes the partial versions of `reduce` and `reduceRight` that throw at runtime if the array is empty (i.e. those that don't require the caller to specify an initial value).
+* Removes the partial versions of `reduce` and `reduceRight` that throw at runtime if the array is empty (i.e. those that don't require the caller to specify an initial value). See also https://github.com/eslint-functional/eslint-plugin-functional/issues/527
 
 ```typescript
 import { principledArray } from "readonly-types";
@@ -214,7 +214,7 @@ const result = foo.reduce((p) => p);
 | `PrincipledArray`         | ❌     | ❌                | ❌                | ✅                | ❌ |
 | `PrincipledNonEmptyArray` | ❌     | ❌                | ❌                | ✅                | ✅ |
 
-Assignments marked ⚠️ can lead to surprising mutation in whichever side of the assignment appears to have "more" immutability, via mutations made to the side that has "less". [eslint-plugin-total-functions](https://github.com/danielnixon/eslint-plugin-total-functions/) includes an ESLint rule to flag these unsafe assignments. See https://github.com/Microsoft/TypeScript/issues/13347 for more.
+Assignments marked ⚠️ can lead to surprising mutation in whichever side of the assignment appears to have "more" immutability, via mutations made to the side that has "less". [eslint-plugin-total-functions](https://github.com/danielnixon/eslint-plugin-total-functions/) includes an ESLint rule to flag these unsafe assignments. https://github.com/eslint-functional/eslint-plugin-functional/issues/526 may play a part too. See https://github.com/Microsoft/TypeScript/issues/13347 for more.
 
 ## Purpose-built immutable data structures
 
