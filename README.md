@@ -61,39 +61,7 @@ The first column ("Even Better 🚀") contains types that are more than just imm
 
 ## Linting
 
-You can ban the mutable counterparts to these readonly types using [ESLint](https://eslint.org/), [no-restricted-globals](https://eslint.org/docs/rules/no-restricted-globals) and [typescript-eslint/ban-types](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-types.md).
-
-```javascript
-  rules: {
-    "@typescript-eslint/ban-types": [
-      "error",
-      {
-        types: {
-          Record: {
-            fixWith: "ReadonlyRecord",
-          },
-          URL: {
-            fixWith: "ReadonlyURL",
-          },
-          URLSearchParams: {
-            fixWith: "ReadonlyURLSearchParams",
-          },
-          Date: {
-            fixWith: "ReadonlyDate",
-          },
-        },
-      },
-    ],
-    "no-restricted-globals": [
-      "error",
-      { name: "URL" },
-      { name: "URLSearchParams" },
-      { name: "Date" },
-    ],
-  },
-```
-
-These lint rules are configured by [eslint-config-typed-fp](https://github.com/danielnixon/eslint-config-typed-fp) for you.
+You can ban the mutable counterparts to these readonly types using [eslint-plugin-functional](https://github.com/eslint-functional/eslint-plugin-functional/)'s [prefer-immutable-types](https://github.com/eslint-functional/eslint-plugin-functional/blob/main/docs/rules/prefer-immutable-types.md) rule.
 
 ## `ImmutableArray` and `PrincipledArray`
 
