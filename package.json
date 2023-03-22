@@ -16,7 +16,7 @@
     "@typescript-eslint/type-utils": "^5.50.0",
     "codecov": "^3.8.3",
     "eslint": "^8.33.0",
-    "eslint-config-agile-digital": "^2.0.1",
+    "eslint-config-agile-digital": "^3.0.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-typed-fp": "^4.1.0",
     "eslint-plugin-functional": "^5.0.2",
