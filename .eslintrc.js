@@ -15,6 +15,8 @@ module.exports = {
   },
   plugins: ["jest", "sonarjs", "functional", "@typescript-eslint", "prettier", "total-functions", "spellcheck", "react", "react-hooks", "jsx-a11y"],
   rules: {
+    // TODO https://github.com/eslint-functional/eslint-plugin-functional/issues/733
+    "functional/prefer-immutable-types": "off",
     "spellcheck/spell-checker": [
       1,
       {

@@ -1,7 +1,4 @@
-/* eslint-disable functional/no-return-void */
-/* eslint-disable functional/functional-parameters */
-/* eslint-disable functional/no-expression-statements */
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   readonlyURL,
   readonlyDate,
@@ -23,15 +20,12 @@ describe("ReadonlyURL", () => {
   it("iterates through URL search params using for..of", () => {
     const url = readonlyURL("http://example.com?foo=a&bar=b");
 
-    // eslint-disable-next-line functional/no-conditional-statements
     if (url === undefined) {
-      // eslint-disable-next-line functional/no-throw-statements
       throw new Error("url was undefined");
     }
 
     // eslint-disable-next-line functional/no-loop-statements
     for (const [k, v] of url.searchParams) {
-      // eslint-disable-next-line functional/no-conditional-statements
       if (k === "foo") {
         // eslint-disable-next-line jest/no-conditional-expect
         expect(v).toEqual("a");
@@ -53,9 +47,7 @@ describe("ReadonlyURL", () => {
     const url = readonlyURL("http://example.com");
     expect(url).toBeDefined();
 
-    // eslint-disable-next-line functional/no-conditional-statements
     if (url === undefined) {
-      // eslint-disable-next-line functional/no-throw-statements
       throw new Error("url was undefined");
     }
 
@@ -85,10 +77,10 @@ describe("ReadonlyURLSearchParams", () => {
       expect(v).toBe("b");
     }
 
-    /* eslint-disable functional/immutable-data, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/consistent-type-assertions, @typescript-eslint/ban-ts-comment */
+    /* eslint-disable functional/immutable-data, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/consistent-type-assertions, @typescript-eslint/ban-ts-comment, @typescript-eslint/no-explicit-any */
     // @ts-expect-error
     params[Symbol.iterator] = null as any;
-    /* eslint-enable functional/immutable-data, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/consistent-type-assertions, @typescript-eslint/ban-ts-comment */
+    /* eslint-enable functional/immutable-data, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/consistent-type-assertions, @typescript-eslint/ban-ts-comment, @typescript-eslint/no-explicit-any */
   });
 
   // eslint-disable-next-line jest/expect-expect
@@ -97,7 +89,7 @@ describe("ReadonlyURLSearchParams", () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unsafe-call
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     params.forEach(() => {});
   });
 });
@@ -121,7 +113,6 @@ describe("ValidReadonlyDate", () => {
   });
 
   it("returns a date for valid input", () => {
-    // eslint-disable-next-line no-restricted-globals
     const date = validReadonlyDate(Date.now());
     expect(date).toBeDefined();
   });
@@ -184,7 +175,6 @@ describe("ReadonlyWeakSet", () => {
 });
 
 describe("ReadonlyPromise", () => {
-  // eslint-disable-next-line functional/prefer-immutable-types
   it("can be awaited", async () => {
     const p: ReadonlyPromise<string> = Promise.resolve("a");
     const result = await p;
@@ -198,7 +188,7 @@ describe("PrincipledArray", () => {
     const foo = principledArray(["a"]);
 
     expect(
-      foo.map((s, _i, _array: PrincipledArray<string>) => s.toUpperCase())
+      foo.map((s, _i, _array: PrincipledArray<string>) => s.toUpperCase()),
     ).toStrictEqual(["A"]);
   });
 
@@ -207,8 +197,8 @@ describe("PrincipledArray", () => {
 
     expect(
       foo.flatMap((s, _i, _array: PrincipledArray<string>) =>
-        principledArray([s.toUpperCase()])
-      )
+        principledArray([s.toUpperCase()]),
+      ),
     ).toStrictEqual(["A"]);
   });
 
@@ -224,7 +214,6 @@ describe("PrincipledArray", () => {
   });
 
   it("can be flattened when nested level is regular array", () => {
-    // eslint-disable-next-line functional/prefer-immutable-types
     const foo = principledArray([["a"], ["b"]]);
 
     const flattened: PrincipledArray<string> = foo.flat();
@@ -233,7 +222,6 @@ describe("PrincipledArray", () => {
   });
 
   it("can be flattened when nested level is mixed", () => {
-    // eslint-disable-next-line functional/prefer-immutable-types
     const foo = principledArray([["a"], principledArray(["b"]), "c"]);
 
     const flattened: PrincipledArray<string> = foo.flat();
@@ -245,7 +233,7 @@ describe("PrincipledArray", () => {
     const foo = principledArray(["a", "b"]);
 
     expect(
-      foo.filter((s, _index, _array: PrincipledArray<string>) => s !== "b")
+      foo.filter((s, _index, _array: PrincipledArray<string>) => s !== "b"),
     ).toStrictEqual(["a"]);
   });
 
@@ -263,7 +251,7 @@ describe("PrincipledArray", () => {
     const foo = principledArray(["a", "b"]);
 
     expect(
-      foo.find((s, _index, _array: PrincipledArray<string>) => s !== "b")
+      foo.find((s, _index, _array: PrincipledArray<string>) => s !== "b"),
     ).toStrictEqual("a");
   });
 
@@ -281,7 +269,7 @@ describe("PrincipledArray", () => {
     const foo = principledArray(["a", "b"]);
 
     expect(
-      foo.findIndex((s, _index, _array: PrincipledArray<string>) => s !== "b")
+      foo.findIndex((s, _index, _array: PrincipledArray<string>) => s !== "b"),
     ).toStrictEqual(0);
   });
 
@@ -291,7 +279,7 @@ describe("PrincipledArray", () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unsafe-call
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     foo.forEach(() => {});
   });
 
@@ -360,7 +348,7 @@ describe("PrincipledArray", () => {
 
     const bar = foo.reduce(
       (p, c, _index, _array: PrincipledArray<string>) => `${p}${c}`,
-      ""
+      "",
     );
 
     expect(bar).toBe("ab");
@@ -371,7 +359,7 @@ describe("PrincipledArray", () => {
 
     const bar = foo.reduceRight(
       (p, c, _index, _array: PrincipledArray<string>) => `${p}${c}`,
-      ""
+      "",
     );
 
     expect(bar).toBe("ba");
@@ -406,7 +394,7 @@ describe("PrincipledArray", () => {
     expect(head).toStrictEqual("a");
 
     expect(
-      foo.reduce((_p, c, _index, _array: PrincipledArray<string>) => c)
+      foo.reduce((_p, c, _index, _array: PrincipledArray<string>) => c),
     ).toStrictEqual("a");
   });
 
@@ -418,8 +406,8 @@ describe("PrincipledArray", () => {
 
     expect(
       foo.reduceRight(
-        (_p, c, _index, _array: PrincipledNonEmptyArray<string>) => c
-      )
+        (_p, c, _index, _array: PrincipledNonEmptyArray<string>) => c,
+      ),
     ).toStrictEqual("a");
   });
 });

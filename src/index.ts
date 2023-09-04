@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/array-type */
 /* eslint-disable @typescript-eslint/ban-types */
-/* eslint-disable no-restricted-globals */
 
 import { IsTuple, IsUnknown } from "ts-essentials";
 
@@ -64,17 +62,17 @@ export type ReadonlyPromise<T> = Readonly<Promise<T>>;
 /**
  * as per AnyArray from ts-essentials but includes our PrincipledArray and ImmutableArray types as well.
  */
+// eslint-disable-next-line functional/type-declaration-immutability
 export type AnyArray<T> =
   | PrincipledArray<T>
   | ImmutableArray<T>
   | ReadonlyArray<T>
-  // eslint-disable-next-line functional/prefer-readonly-type
   | Array<T>;
 
-// eslint-disable-next-line functional/prefer-readonly-type
+// eslint-disable-next-line functional/type-declaration-immutability
 export type AnyMap<K, V> = Map<K, V> | ReadonlyMap<K, V> | ImmutableMap<K, V>;
 
-// eslint-disable-next-line functional/prefer-readonly-type, functional/type-declaration-immutability
+// eslint-disable-next-line functional/type-declaration-immutability
 export type AnySet<T> = Set<T> | ReadonlySet<T> | ImmutableSet<T>;
 
 /**
@@ -86,7 +84,6 @@ type FlatArray<Arr, Depth extends number> = {
   readonly recur: Arr extends AnyArray<infer InnerArr>
     ? FlatArray<
         InnerArr,
-        // eslint-disable-next-line functional/prefer-readonly-type
         [
           -1,
           0,
@@ -109,7 +106,7 @@ type FlatArray<Arr, Depth extends number> = {
           17,
           18,
           19,
-          20
+          20,
         ][Depth]
       >
     : Arr;
@@ -125,7 +122,7 @@ export type ConcatArray<T> = {
   readonly join: (separator?: string) => string;
   readonly slice: (
     start?: number,
-    end?: number
+    end?: number,
   ) => PrincipledArray<T> | ImmutableArray<T>;
 };
 
@@ -153,44 +150,43 @@ export type PrincipledArray<T> = ImmutableShallow<
 > & {
   readonly map: <U, This = undefined>(
     callback: (value: T, index: number, array: PrincipledArray<T>) => U,
-    thisArg?: This
+    thisArg?: This,
   ) => PrincipledArray<U>;
 
   readonly filter: <S extends T = T, This = undefined>(
     predicate:
       | ((value: T, index: number, array: PrincipledArray<T>) => value is S)
       | ((value: T, index: number, array: PrincipledArray<T>) => boolean),
-    thisArg?: This
+    thisArg?: This,
   ) => PrincipledArray<S>;
 
   readonly find: <S extends T = T, This = undefined>(
     predicate:
       | ((value: T, index: number, obj: PrincipledArray<T>) => value is S)
       | ((value: T, index: number, obj: PrincipledArray<T>) => boolean),
-    thisArg?: This
+    thisArg?: This,
   ) => S | undefined;
 
   readonly findIndex: <This = undefined>(
     predicate: (value: T, index: number, obj: PrincipledArray<T>) => boolean,
-    thisArg?: This
+    thisArg?: This,
   ) => number;
 
   readonly flatMap: <U, This = undefined>(
     callback: (
       value: T,
       index: number,
-      array: PrincipledArray<T>
+      array: PrincipledArray<T>,
     ) => U | PrincipledArray<U> | ImmutableArray<U>,
-    thisArg?: This
+    thisArg?: This,
   ) => PrincipledArray<U>;
 
   readonly flat: <A, D extends number = 1>(
     this: A,
-    depth?: D
+    depth?: D,
   ) => PrincipledArray<FlatArray<A, D>>;
 
   readonly concat: (
-    // eslint-disable-next-line functional/prefer-immutable-types
     ...items: readonly (T | ConcatArray<T>)[]
   ) => PrincipledArray<T>;
 
@@ -198,12 +194,12 @@ export type PrincipledArray<T> = ImmutableShallow<
 
   readonly every: <This = undefined>(
     predicate: (value: T, index: number, array: PrincipledArray<T>) => boolean,
-    thisArg?: This
+    thisArg?: This,
   ) => boolean;
 
   readonly some: <This = undefined>(
     predicate: (value: T, index: number, array: PrincipledArray<T>) => boolean,
-    thisArg?: This
+    thisArg?: This,
   ) => boolean;
 
   readonly reduce: <U = T>(
@@ -211,9 +207,9 @@ export type PrincipledArray<T> = ImmutableShallow<
       previousValue: U,
       currentValue: T,
       currentIndex: number,
-      array: PrincipledArray<T>
+      array: PrincipledArray<T>,
     ) => U,
-    initialValue: U
+    initialValue: U,
   ) => U;
 
   readonly reduceRight: <U = T>(
@@ -221,9 +217,9 @@ export type PrincipledArray<T> = ImmutableShallow<
       previousValue: U,
       currentValue: T,
       currentIndex: number,
-      array: PrincipledArray<T>
+      array: PrincipledArray<T>,
     ) => U,
-    initialValue: U
+    initialValue: U,
   ) => U;
 };
 
@@ -253,14 +249,14 @@ export type PrincipledNonEmptyArray<T> = ImmutableShallow<
  * Copies the provided immutable array and returns the result as a principled array.
  */
 export const principledArray = <T>(
-  immutableArray: ImmutableArray<T>
+  immutableArray: ImmutableArray<T>,
 ): PrincipledArray<T> => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   return [...immutableArray] as PrincipledArray<T>;
 };
 
 export const principledNonEmptyArray = <T>(
-  immutableArray: ImmutableNonEmptyArray<T>
+  immutableArray: ImmutableNonEmptyArray<T>,
 ): PrincipledNonEmptyArray<T> => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   return [...immutableArray] as unknown as PrincipledNonEmptyArray<T>;
@@ -316,6 +312,7 @@ export type ImmutableMap<K, V> = Readonly<ReadonlyMap<K, V>>;
  * @see https://github.com/pelotom/type-zoo
  * @see https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-377567046
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type OmitStrict<T, K extends keyof T> = T extends any
   ? Pick<T, Exclude<keyof T, K>>
   : never;
@@ -325,19 +322,17 @@ export type ReadonlyURLSearchParams = Readonly<
 >;
 
 export const readonlyURLSearchParams = (
-  // eslint-disable-next-line functional/prefer-immutable-types
   init?:
     | readonly (readonly string[])[]
-    // eslint-disable-next-line functional/prefer-readonly-type
     | string[][]
     | Record<string, string>
     | string
     | URLSearchParams
-    | ReadonlyURLSearchParams
+    | ReadonlyURLSearchParams,
 ): ReadonlyURLSearchParams =>
   new URLSearchParams(
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions, functional/prefer-readonly-type
-    init as string[][] | Record<string, string> | string | URLSearchParams
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+    init as string[][] | Record<string, string> | string | URLSearchParams,
   );
 
 export type ReadonlyURL = Readonly<OmitStrict<URL, "searchParams">> & {
@@ -346,12 +341,12 @@ export type ReadonlyURL = Readonly<OmitStrict<URL, "searchParams">> & {
 
 export const readonlyURL = (
   url: string,
-  // eslint-disable-next-line functional/prefer-immutable-types
-  base?: string | URL | ReadonlyURL
+
+  base?: string | URL | ReadonlyURL,
 ): ReadonlyURL | undefined => {
   // eslint-disable-next-line functional/no-try-statements
   try {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions, total-functions/no-partial-url-constructor
     return new URL(url, base as string | URL);
   } catch {
     /* returning undefined below results in a better mutation score */
@@ -381,14 +376,12 @@ export type ReadonlyDate = Readonly<
 >;
 
 export const readonlyDate = (
-  // eslint-disable-next-line functional/prefer-immutable-types
-  value: number | string | Date | ReadonlyDate
+  value: number | string | Date | ReadonlyDate,
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 ): ReadonlyDate => new Date(value as number | string | Date);
 
 export const validReadonlyDate = (
-  // eslint-disable-next-line functional/prefer-immutable-types
-  value: number | string | Date | ReadonlyDate
+  value: number | string | Date | ReadonlyDate,
 ): ReadonlyDate | undefined => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const d: ReadonlyDate = new Date(value as number | string | Date);
@@ -406,23 +399,19 @@ export type ReadonlyWeakMap<K extends object, V> = Readonly<
   OmitStrict<WeakMap<K, V>, "delete" | "set">
 >;
 
-// eslint-disable-next-line functional/prefer-immutable-types
 export const readonlySet = <T>(values: Iterable<T>): ImmutableSet<T> =>
   new Set(values);
 
 export const readonlyWeakSet = <T extends object>(
-  // eslint-disable-next-line functional/prefer-immutable-types
-  values: Iterable<T>
+  values: Iterable<T>,
 ): ReadonlyWeakSet<T> => new WeakSet(values);
 
 export const readonlyMap = <K, V>(
-  // eslint-disable-next-line functional/prefer-immutable-types
-  values: Iterable<readonly [K, V]>
+  values: Iterable<readonly [K, V]>,
 ): ImmutableMap<K, V> => new Map(values);
 
 export const readonlyWeakMap = <K extends object, V>(
-  // eslint-disable-next-line functional/prefer-immutable-types
-  values: Iterable<readonly [K, V]>
+  values: Iterable<readonly [K, V]>,
 ): ReadonlyWeakMap<K, V> => new WeakMap(values);
 
 export type ReadonlyError = Readonly<Error>;
