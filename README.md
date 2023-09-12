@@ -228,10 +228,6 @@ foo.delete = () => foo; // Cannot assign to 'delete' because it is a read-only p
 
 See [Making ReadonlyDeep types Immutable](https://github.com/RebeccaStevens/is-immutable-type#making-readonlydeep-types-immutable) for more on this.
 
-## A note on zod
-
-[zod](https://github.com/colinhacks/zod) is great but it doesn't support readonly types (see e.g. https://github.com/colinhacks/zod/pull/1432). If you're reading this readme you probably care about readonly types. For this reason we recommend [io-ts](https://github.com/gcanti/io-ts), which has `t.readonly` and `t.readonlyArray`. See also https://github.com/danielnixon/eslint-plugin-total-functions/issues/334
-
 ## See Also
 * https://github.com/danielnixon/eslint-config-typed-fp
 * https://github.com/jonaskello/eslint-plugin-functional
