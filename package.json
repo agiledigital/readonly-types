@@ -49,6 +49,6 @@
     "detail": true
   },
   "dependencies": {
-    "ts-essentials": "^9.4.0"
+    "ts-essentials": "^10.0.0"
   }
 }
