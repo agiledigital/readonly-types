@@ -48,14 +48,14 @@ The first column ("Even Better 🚀") contains types that are more than just imm
 | | `ReadonlyURL` | | | [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) | 
 | | `ReadonlyURLSearchParams` | | | [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) |
 | [Temporal](https://tc39.es/proposal-temporal/) (stage 3 proposal, aims to solve various problems in `Date`, including its mutability) | `ReadonlyDate` | | | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) |
-| [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`), purpose-built immutable data structures | `ImmutableArray` | `ReadonlyArray` | | `Array` |
+| [Chunk](https://effect.website/docs/data-types/chunk/), [PrincipledArray](https://github.com/agiledigital/readonly-types/issues/7) (does not return mutable arrays from methods like `map`), purpose-built immutable data structures | `ImmutableArray` | `ReadonlyArray` | | `Array` |
 | purpose-built immutable data structures | `ImmutableSet` | `ReadonlySet` | | `Set` |
 | purpose-built immutable data structures | `ImmutableMap` | `ReadonlyMap` | | `Map` |
 | | `ReadonlyWeakSet` | | | [`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) |
 | | `ReadonlyWeakMap` | | | [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) |
-| [fp-ts's `Either`](https://gcanti.github.io/fp-ts/modules/Either.ts.html) | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
+| [Effect's `Either`](https://effect.website/docs/data-types/either/), [fp-ts's `Either`](https://gcanti.github.io/fp-ts/modules/Either.ts.html) | `ReadonlyError` (and friends) | | | [`Error` and friends](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#error_objects) |
 | | `ReadonlyRegExp` | | | `RegExp` |
-| [fp-ts's `TaskEither`](https://gcanti.github.io/fp-ts/modules/TaskEither.ts.html), and eventually [Effect](https://github.com/Effect-TS/effect) | `ReadonlyPromise` | `Promise` | | |
+| [Effect](https://effect.website/docs/getting-started/the-effect-type/), [fp-ts's `TaskEither`](https://gcanti.github.io/fp-ts/modules/TaskEither.ts.html) | `ReadonlyPromise` | `Promise` | | |
 | | `DeepImmutable` | | | [`DeepReadonly` from ts-essentials](https://github.com/ts-essentials/ts-essentials/blob/master/lib/types.ts#L156-L181), which when used will produce a mix of `Mutable` and `ReadonlyDeep` types |
 * PRs welcome!
 
